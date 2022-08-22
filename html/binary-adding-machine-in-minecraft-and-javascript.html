@@ -75,15 +75,35 @@
                     gate I have built in Minecraft (with a little help from <a
                         href="https://www.youtube.com/watch?v=9EY_XoEImjM">Mumbo Jumbo</a>).
                 </p>
-
-                <iframe src="https://www.youtube.com/embed/lojHpNqSUuU?controls=0" title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row mt-4 mb-5">
+            <img src="../images/posts/binary-adding-machine-in-minecraft-and-javascript/AND.gif" class="img-fluid">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
                 <p>
                     As you can see, the output is a voltage only if both the inputs are voltage. If one or the other
                     inputs is not a voltage, the output is not a voltage.
                 </p>
+                <div class="bg-light p-4 pt-1 pb-0">
+                    <pre>
+                        <code>
+// AND gate
+const andGate = (a, b) => {
+    if (a && b) {
+        // Both inputs are a voltage, therefore the output is a voltage
+        return 1
+    } else {
+        // Both inputs are NOT a voltage, therefore the output is NOT a voltage
+        return 0
+    }
+}
+                        </code>
+                    </pre>
+                </div>
             </div>
             <div class="col"></div>
         </div>
