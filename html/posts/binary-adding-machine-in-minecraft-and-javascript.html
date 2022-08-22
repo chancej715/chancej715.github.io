@@ -72,7 +72,8 @@
                     src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/2-bit-sum-carry-table.png">
                 <h4 class="mt-5">Logic Gates</h4>
                 <p>
-                    We'll start with the AND gate, because we can use it to calculate the carry bit. Here is the AND
+                    To do all of this, we need to make some logic gates. We'll start with the AND gate, because we can
+                    use it to calculate the carry bit. Here is the AND
                     gate I have built in Minecraft (with a little help from <a
                         href="https://www.youtube.com/watch?v=9EY_XoEImjM">Mumbo Jumbo</a>).
                 </p>
@@ -119,7 +120,7 @@ const andGate = (a, b) => {
                 <p class="pt-3">Now we need a gate to calculate our sum bit. To create a gate that can perform this
                     calculation, we first need to create two
                     more logic gates: the OR and the NAND gate.</p>
-                <p>Here is the OR gate I made in Minecraft.</p>
+                <p>Here is the OR gate I made in Minecraft:</p>
             </div>
             <div class="col"></div>
         </div>
@@ -186,7 +187,7 @@ const nandGate = (a, b) => {
                     output. This little circle means the signal is inverted at that point.</p>
                 <p class="pt-3">Why did we create these two gates you ask? What do these gates have to do with
                     calculating the sum bit? If we connect the two outputs of these gates
-                    to an AND gate, we get an XOR gate, which we can use to calculate our sum bit.</p>
+                    to an AND gate, we get an XOR gate. We can use a XOR gate to calculate our sum bit.</p>
                 <p>Here is the XOR gate I have built in Minecraft:</p>
             </div>
             <div class="col"></div>
@@ -228,8 +229,8 @@ const xorGate = (a, b) => {
 }</code>
     </pre>
                 </div>
-                <p>This is great! We can use our new XOR gate to calculate our sum bit. Now that we can calculate both
-                    our carry and our sum bit, we are well on our way to adding two 1-bit binary numbers.</p>
+                <p>This is great! Now that we can calculate both our carry and our sum bit, we are well on our way to
+                    adding two 1-bit binary numbers.</p>
             </div>
             <div class="col"></div>
         </div>
