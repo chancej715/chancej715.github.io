@@ -1,6 +1,11 @@
 <!doctype html>
 <html lang="en">
 
+<!--
+    TODO
+        - Make JavaScript executable in the page
+-->
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,10 +41,18 @@
             <div class="col"></div>
             <div class="col-10">
                 <h1 class="mt-4">Binary Adding Machine</h1>
+                <p class="text-muted">2022-08-21</p>
                 <p>
-                    I have recently began reading the renowned "Code: The Hidden Language of Computer Hardware and
+                    Recently, I have began reading the renowned "Code: The Hidden Language of Computer Hardware and
                     Software" by Charles Petzold. You can find it <a
-                        href="https://www.amazon.com/exec/obidos/ASIN/0735611319">here</a>. In chapter twelve, Charles
+                        href="https://www.amazon.com/exec/obidos/ASIN/0735611319">here</a>.
+                    I highly recommend this book, especially if you're new to computer science. Charles does a wonderful
+                    job of explaining challenging topics in a digestable and beginner friendly manner. I should also
+                    mention that a second edition of this book has recently been released, which you can find <a
+                        href="https://www.amazon.com/Code-Language-Computer-Hardware-Software-dp-0137909101/dp/0137909101/ref=dp_ob_title_bk">here.</a>
+                </p>
+                <p>
+                    In chapter twelve, Charles
                     describes how to make a simple binary
                     adding
                     machine to add two 8-bit binary numbers. I decided to create an implementation of this machine in
@@ -50,6 +63,8 @@
                 <p>
                     In this post, we will walk through the entire process step by step. I will show how I was able to
                     follow the instructions in chapter twelve to create this machine in both JavaScript and Minecraft.
+                    If you would like a more in-depth explanation of any of the following topics, I encourage you to
+                    read chapter twelve of the aforementioned book.
                 </p>
                 <h4>Introduction</h4>
                 <p>
@@ -86,6 +101,7 @@
         <div class="row">
             <div class="col"></div>
             <div class="col-10">
+                <h1 style="color: red">REPLACE THIS VIDEO TO SHOW THE FULL TRUTH TABLE!!!</h1>
                 <p>
                     As you can see, the output is a voltage only if both the inputs are a voltage. If one or the other
                     inputs is not a voltage, the output is not a voltage.
@@ -130,6 +146,7 @@ const andGate = (a, b) => {
         <div class="row">
             <div class="col"></div>
             <div class="col-10">
+                <h1 style="color: red">REPLACE THIS VIDEO TO SHOW THE FULL TRUTH TABLE!!!</h1>
                 <p class="pt-3">Notice that the output is a voltage if either (or both) of the inputs is a voltage. </p>
                 <p class="pb-2">This is the OR gate I made in JavaScript:</p>
                 <div class="bg-light p-4 pt-1 pb-0">
@@ -217,9 +234,9 @@ const nandGate = (a, b) => {
         <div class="row">
             <div class="col"></div>
             <div class="col-10">
-                <p class="pt-5">This is the symbol for the XOR gate:</p>
+                <p class="pt-5">Here is the symbol for the XOR gate:</p>
                 <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/XOR.png">
-                <p class="pt-3">This is my JavaScript implementation:</p>
+                <p class="pt-3">And my JavaScript implementation:</p>
                 <div class="bg-light p-4 pt-1 pb-0 mt-4">
                     <pre>
                             <code>
@@ -229,10 +246,102 @@ const xorGate = (a, b) => {
 }</code>
     </pre>
                 </div>
-                <p>This is great! Now that we can calculate both our carry and our sum bit, we are well on our way to
-                    adding two 1-bit binary numbers.</p>
+                <p>
+                    This is great! Now that we can calculate both our carry and our sum bit, we are well on our way to
+                    adding two 1-bit binary numbers. We can combine our AND gate and XOR gate to add two binary
+                    digits.
+                </p>
             </div>
             <div class="col"></div>
+        </div>
+        <div class="row pt-4">
+            <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Half Adder.gif"
+                class="img-fluid mb-5">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pb-4">
+                    As you can see, I connected the A and B inputs of the XOR gate to the corresponding A and B inputs
+                    of the AND gate, just like the following picture.
+                </p>
+                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/XOR_AND.png"
+                    class="img-fluid">
+                <p class="pt-5">
+                    This assortment of gates is called a "Half Adder". It's called a Half Adder because it can only add
+                    two 1-bit binary numbers. It does not add a possible carry bit from a previous addition. On its own,
+                    this isn't very useful, because the vast majority of binary nubmers are longer than 1 bit.
+                </p>
+                <p>Here is the Half Adder I made in JavaScript:</p>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <div class="bg-light p-4 pt-1 pb-0 mt-4">
+                    <pre>
+                            <code>
+/**
+* Half adder
+*/
+const halfAdder = (a, b) => {
+    const sumOut = xorGate(a, b)
+    const carryOut = andGate(a, b)
+
+    return `${sumOut}${carryOut}`
+}</code>
+    </pre>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pb-3 pt-4">Here is the symbol we'll use to refer to a half adder:</p>
+                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Half Adder.png"
+                    class="img-fluid">
+                <p class="pt-4 pb-3">To add three binary digits, we need two Half Adders and an OR gate, wired like
+                    this:
+                </p>
+                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Expanded.png"
+                    class="img-fluid">
+                <p class="pt-5">In Minecraft, I connected the Sum Out of the first half adder to the B input of the
+                    second half adder. I also added an additional Carry In line which serves as the A input to the
+                    second adder.
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row pt-4">
+            <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Explanation 1.gif"
+                class="img-fluid">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">And I've connected the Carry Out of the first and second half adders to the A and B inputs of an OR
+                    gate.</p>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row pt-4">
+            <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Explanation 2.gif"
+                class="img-fluid">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">Now let's confirm that our new Full Adder obeys the following table.</p>
+                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Truth Table.png"
+                class="img-fluid">
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row pt-4">
+            <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Truth Check.gif"
+                class="img-fluid">
         </div>
     </div>
 
