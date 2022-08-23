@@ -321,7 +321,8 @@ const halfAdder = (a, b) => {
         <div class="row">
             <div class="col"></div>
             <div class="col-10">
-                <p class="pt-5">And I've connected the Carry Out of the first and second half adders to the A and B inputs of an OR
+                <p class="pt-5">And I've connected the Carry Out of the first and second half adders to the A and B
+                    inputs of an OR
                     gate.</p>
             </div>
             <div class="col"></div>
@@ -333,15 +334,111 @@ const halfAdder = (a, b) => {
         <div class="row">
             <div class="col"></div>
             <div class="col-10">
-                <p class="pt-5">Now let's confirm that our new Full Adder obeys the following table.</p>
+                <p class="pt-5">We can call this assemblage a "Full Adder". Now let's confirm that our new Full Adder
+                    obeys the following table.</p>
                 <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Truth Table.png"
-                class="img-fluid">
+                    class="img-fluid">
             </div>
             <div class="col"></div>
         </div>
         <div class="row pt-4">
             <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Truth Check.gif"
                 class="img-fluid">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-3">This symbol indicates a Full Adder:</p>
+                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder.png"
+                    class="img-fluid">
+                <p class="pt-5">Here is my JavaScript implementation:</p>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <div class="bg-light p-4 pt-1 pb-0 mt-4">
+                    <pre>
+                            <code>
+/**
+* Full adder
+*/
+const fullAdder = (a, b, cin) => {
+    // First, we need the Sum out of the first adder
+    const firstAdderOutput = halfAdder(a, b)
+    const firstSumOut = parseInt(firstAdderOutput[0])
+    const firstCarryOut = parseInt(firstAdderOutput[1])
+
+    // Then we pass Carry In, First Sum Out as A B to the second adder
+    const secondAdderOutput = halfAdder(cin, firstSumOut)
+    const secondSumOut = parseInt(secondAdderOutput[0])
+    const secondCarryOut = parseInt(secondAdderOutput[1])
+
+    // Then we pass the first Carry Out, and the second Carry Out as inputs to the OR gate
+    const orGateOutput = orGate(secondCarryOut, firstCarryOut)
+
+            // Sum Out     // Carry Out
+    return `${secondSumOut}${orGateOutput}`
+}</code>
+    </pre>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-3">We're just about finished. We just need to line up eight Full Adders in an array
+                    like this:</p>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row pt-3">
+            <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Array.gif"
+                class="img-fluid">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-3">Just like this diagram.</p>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row pt-3">
+            <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Array Diagram.png"
+                class="img-fluid">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-4">Then connect the Carry Out of each Full Adder to the Carry In of the next.</p>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row pt-3">
+            <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Carry Out Carry In.gif"
+                class="img-fluid">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-4">The rest is pretty simple as we just need to make the control panel and connect it to
+                    the Full Adders.</p>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row pt-3">
+            <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Control Panel.png"
+                class="img-fluid">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-4">I connected the top row of levers to the corresponding A inputs of each Full Adder, and the bottom row of levers to the B inputs. Then I connected the eight sum outputs of each Full Adder, as well as the carry output of the final Full Adder, to the row of lights on the bottom.</p>
+                <p class="pt-4">Finally, we can check to make sure our implementation is correct.</p>
+            </div>
+            <div class="col"></div>
         </div>
     </div>
 
