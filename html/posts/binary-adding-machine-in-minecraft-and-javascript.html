@@ -81,10 +81,12 @@
                     The following addition table describes
                     the sums of our two 1-bit numbers.
                 </p>
-                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/2-bit-sum-table.png">
-                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/2-bit-sum-sum-table.png">
-                <img
-                    src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/2-bit-sum-carry-table.png">
+                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/2-bit-sum-table.png"
+                    loading="lazy">
+                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/2-bit-sum-sum-table.png"
+                    loading="lazy">
+                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/2-bit-sum-carry-table.png"
+                    loading="lazy">
                 <h4 class="mt-5">Logic Gates</h4>
                 <p>
                     To do all of this, we need to make some logic gates. We'll start with the AND gate, because we can
@@ -96,7 +98,8 @@
             <div class="col"></div>
         </div>
         <div class="row mt-4 mb-5">
-            <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/AND.gif" class="img-fluid">
+            <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/AND.gif" class="img-fluid"
+                loading="lazy">
         </div>
         <div class="row">
             <div class="col"></div>
@@ -130,9 +133,11 @@ const andGate = (a, b) => {
             <div class="col"></div>
             <div class="col-10">
                 <p class="mt-3">We can use this truth table to confirm our implementations are correct.</p>
-                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/AND_truth.png">
+                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/AND_truth.png"
+                    loading="lazy">
                 <p class="pt-3">This is the symbol electrical engineers use to describe an AND gate:</p>
-                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/AND_symbol.png">
+                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/AND_symbol.png"
+                    loading="lazy">
                 <p class="pt-3">Now we need a gate to calculate our sum bit. To create a gate that can perform this
                     calculation, we first need to create two
                     more logic gates: the OR and the NAND gate.</p>
@@ -141,7 +146,8 @@ const andGate = (a, b) => {
             <div class="col"></div>
         </div>
         <div class="row">
-            <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/OR.gif" class="img-fluid">
+            <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/OR.gif" class="img-fluid"
+                loading="lazy">
         </div>
         <div class="row">
             <div class="col"></div>
@@ -165,9 +171,11 @@ const orGate = (a, b) => {
     </pre>
                 </div>
                 <p>We can confirm that these implementations obey this truth table.</p>
-                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/OR_truth.png">
+                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/OR_truth.png"
+                    loading="lazy">
                 <p class="pt-4">This is the symbol for the OR gate:</p>
-                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/OR_symbol.png">
+                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/OR_symbol.png"
+                    loading="lazy">
                 <p class="pt-4">The NAND gate is simply the AND gate with an inverted output. So all I did in Minecraft
                     was add an
                     inverter to the output of the original AND gate.</p>
@@ -175,7 +183,8 @@ const orGate = (a, b) => {
             <div class="col"></div>
         </div>
         <div class="row">
-            <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/NAND.gif" class="img-fluid">
+            <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/NAND.gif" class="img-fluid"
+                loading="lazy">
         </div>
         <div class="row">
             <div class="col"></div>
@@ -197,9 +206,11 @@ const nandGate = (a, b) => {
     </pre>
                 </div>
                 <p>Truth table for the NAND gate:</p>
-                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/NAND_truth.png">
+                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/NAND_truth.png"
+                    loading="lazy">
                 <p class="pt-3">The following symbol describes the NAND gate.</p>
-                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/NAND_symbol.png">
+                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/NAND_symbol.png"
+                    loading="lazy">
                 <p class="pt-3">Notice how it's exactly the same as the AND gate symbol, but with a little circle on the
                     output. This little circle means the signal is inverted at that point.</p>
                 <p class="pt-3">Why did we create these two gates you ask? What do these gates have to do with
@@ -218,24 +229,25 @@ const nandGate = (a, b) => {
                 <p class="pt-4 pb-3">As you can see, I connected the A and B inputs of the OR gate (on the left) to the
                     A and B inputs of the NAND gate (on the right), just like this:</p>
                 <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/OR_NAND.png"
-                    class="img-fluid">
+                    class="img-fluid" loading="lazy">
                 <p class="pt-4 pb-3">And then I connected their outputs to the inputs of an AND gate, like this:</p>
                 <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/XOR_expanded.png"
-                    class="img-fluid">
+                    class="img-fluid" loading="lazy">
                 <p class="pt-4">Now let's confirm that this implementation obeys the following truth table.</p>
-                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/XOR_truth.png">
+                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/XOR_truth.png"
+                    loading="lazy">
             </div>
             <div class="col"></div>
         </div>
         <div class="row pt-4">
             <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/XOR_truth.gif"
-                class="img-fluid">
+                class="img-fluid" loading="lazy">
         </div>
         <div class="row">
             <div class="col"></div>
             <div class="col-10">
                 <p class="pt-5">Here is the symbol for the XOR gate:</p>
-                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/XOR.png">
+                <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/XOR.png" loading="lazy">
                 <p class="pt-3">And my JavaScript implementation:</p>
                 <div class="bg-light p-4 pt-1 pb-0 mt-4">
                     <pre>
@@ -256,7 +268,7 @@ const xorGate = (a, b) => {
         </div>
         <div class="row pt-4">
             <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Half Adder.gif"
-                class="img-fluid mb-5">
+                class="img-fluid mb-5" loading="lazy">
         </div>
         <div class="row">
             <div class="col"></div>
@@ -266,7 +278,7 @@ const xorGate = (a, b) => {
                     of the AND gate, just like the following picture.
                 </p>
                 <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/XOR_AND.png"
-                    class="img-fluid">
+                    class="img-fluid" loading="lazy">
                 <p class="pt-5">
                     This assortment of gates is called a "Half Adder". It's called a Half Adder because it can only add
                     two 1-bit binary numbers. It does not add a possible carry bit from a previous addition. On its own,
@@ -301,12 +313,12 @@ const halfAdder = (a, b) => {
             <div class="col-10">
                 <p class="pb-3 pt-4">Here is the symbol we'll use to refer to a half adder:</p>
                 <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Half Adder.png"
-                    class="img-fluid">
+                    class="img-fluid" loading="lazy">
                 <p class="pt-4 pb-3">To add three binary digits, we need two Half Adders and an OR gate, wired like
                     this:
                 </p>
                 <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Expanded.png"
-                    class="img-fluid">
+                    class="img-fluid" loading="lazy">
                 <p class="pt-5">In Minecraft, I connected the Sum Out of the first half adder to the B input of the
                     second half adder. I also added an additional Carry In line which serves as the A input to the
                     second adder.
@@ -316,7 +328,7 @@ const halfAdder = (a, b) => {
         </div>
         <div class="row pt-4">
             <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Explanation 1.gif"
-                class="img-fluid">
+                class="img-fluid" loading="lazy">
         </div>
         <div class="row">
             <div class="col"></div>
@@ -329,7 +341,7 @@ const halfAdder = (a, b) => {
         </div>
         <div class="row pt-4">
             <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Explanation 2.gif"
-                class="img-fluid">
+                class="img-fluid" loading="lazy">
         </div>
         <div class="row">
             <div class="col"></div>
@@ -337,20 +349,20 @@ const halfAdder = (a, b) => {
                 <p class="pt-5">We can call this assemblage a "Full Adder". Now let's confirm that our new Full Adder
                     obeys the following table.</p>
                 <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Truth Table.png"
-                    class="img-fluid">
+                    class="img-fluid" loading="lazy">
             </div>
             <div class="col"></div>
         </div>
         <div class="row pt-4">
             <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Truth Check.gif"
-                class="img-fluid">
+                class="img-fluid" loading="lazy">
         </div>
         <div class="row">
             <div class="col"></div>
             <div class="col-10">
                 <p class="pt-5 pb-3">This symbol indicates a Full Adder:</p>
                 <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder.png"
-                    class="img-fluid">
+                    class="img-fluid" loading="lazy">
                 <p class="pt-5">Here is my JavaScript implementation:</p>
             </div>
             <div class="col"></div>
@@ -396,7 +408,7 @@ const fullAdder = (a, b, cin) => {
         </div>
         <div class="row pt-3">
             <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Array.gif"
-                class="img-fluid">
+                loading="lazy" class="img-fluid" loading="lazy">
         </div>
         <div class="row">
             <div class="col"></div>
@@ -407,7 +419,7 @@ const fullAdder = (a, b, cin) => {
         </div>
         <div class="row pt-3">
             <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Array Diagram.png"
-                class="img-fluid">
+                class="img-fluid" loading="lazy">
         </div>
         <div class="row">
             <div class="col"></div>
@@ -418,7 +430,7 @@ const fullAdder = (a, b, cin) => {
         </div>
         <div class="row pt-3">
             <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Full Adder Carry Out Carry In.gif"
-                class="img-fluid">
+                class="img-fluid" loading="lazy">
         </div>
         <div class="row">
             <div class="col"></div>
@@ -430,7 +442,7 @@ const fullAdder = (a, b, cin) => {
         </div>
         <div class="row pt-3">
             <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Control Panel.png"
-                class="img-fluid">
+                class="img-fluid" loading="lazy">
         </div>
         <div class="row">
             <div class="col"></div>
@@ -445,13 +457,15 @@ const fullAdder = (a, b, cin) => {
         </div>
         <div class="row pt-3">
             <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/Addition Test.gif"
-                class="img-fluid">
+                class="img-fluid" loading="lazy">
         </div>
         <div class="row">
             <div class="col"></div>
             <div class="col-10">
                 <p class="pt-4">And it works! The sum of 0110-0101 and 1011-0110 is 1-0001-1011, as indicated by the
-                    bottom row of lamps. The full JavaScript implementation can be found <a href="https://raw.githubusercontent.com/chancej715/binary-adding-machine/main/script.js">here</a>.</p>
+                    bottom row of lamps. The full JavaScript implementation can be found <a
+                        href="https://raw.githubusercontent.com/chancej715/binary-adding-machine/main/script.js">here</a>.
+                </p>
             </div>
             <div class="col"></div>
         </div>
