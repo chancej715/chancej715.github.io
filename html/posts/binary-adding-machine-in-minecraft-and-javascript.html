@@ -33,6 +33,201 @@
             </div>
         </div>
     </nav>
+
+    <script>
+        // AND gate
+        const andGate = (a, b) => {
+            if (a && b) {
+                // Both inputs are a voltage, therefore the output is a voltage
+                return 1
+            } else {
+                // Both inputs are NOT a voltage, therefore the output is NOT a voltage
+                return 0
+            }
+        }
+
+        const andGateOutput = () => {
+            let p = document.createElement("p")
+            p.innerText = andGate(0, 0)
+            document.getElementById("andGateOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = andGate(0, 1)
+            document.getElementById("andGateOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = andGate(1, 0)
+            document.getElementById("andGateOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = andGate(1, 1)
+            document.getElementById("andGateOutput").appendChild(p)
+        }
+
+        // OR gate
+        const orGate = (a, b) => {
+            if (a | b) {
+                // Either a or b is a voltage, therefore the output is a voltage
+                return 1
+            } else {
+                // Neither a nor b are a voltage, therefore the output is NOT a voltage
+                return 0
+            }
+        }
+
+        const orGateOutput = () => {
+            let p = document.createElement("p")
+            p.innerText = orGate(0, 0)
+            document.getElementById("orGateOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = orGate(0, 1)
+            document.getElementById("orGateOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = orGate(1, 0)
+            document.getElementById("orGateOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = orGate(1, 1)
+            document.getElementById("orGateOutput").appendChild(p)
+        }
+
+        // NAND gate
+        const nandGate = (a, b) => {
+            if (a && b) {
+                // Both inputs are a voltage, therefore the output is NOT a voltage
+                return 0
+            } else {
+                // Both the inputs are NOT a voltage, therefore the output is a voltage
+                return 1
+            }
+        }
+
+        const nandGateOutput = () => {
+            let p = document.createElement("p")
+            p.innerText = nandGate(0, 0)
+            document.getElementById("nandGateOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = nandGate(0, 1)
+            document.getElementById("nandGateOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = nandGate(1, 0)
+            document.getElementById("nandGateOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = nandGate(1, 1)
+            document.getElementById("nandGateOutput").appendChild(p)
+        }
+
+        // XOR gate
+        const xorGate = (a, b) => {
+            return andGate(orGate(a, b), nandGate(a, b))
+        }
+
+        const xorGateOutput = () => {
+            let p = document.createElement("p")
+            p.innerText = xorGate(0, 0)
+            document.getElementById("xorGateOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = xorGate(0, 1)
+            document.getElementById("xorGateOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = xorGate(1, 0)
+            document.getElementById("xorGateOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = xorGate(1, 1)
+            document.getElementById("xorGateOutput").appendChild(p)
+        }
+
+        /**
+        * Half adder
+        */
+        const halfAdder = (a, b) => {
+            const sumOut = xorGate(a, b)
+            const carryOut = andGate(a, b)
+
+            return `${sumOut}${carryOut}`
+        }
+
+        const halfAdderOutput = () => {
+            let p = document.createElement("p")
+            p.innerText = halfAdder(0, 0)
+            document.getElementById("halfAdderOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = halfAdder(0, 1)
+            document.getElementById("halfAdderOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = halfAdder(1, 0)
+            document.getElementById("halfAdderOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = halfAdder(1, 1)
+            document.getElementById("halfAdderOutput").appendChild(p)
+        }
+
+        /**
+        * Full adder
+        */
+        const fullAdder = (a, b, cin) => {
+            // First, we need the Sum out of the first adder
+            const firstAdderOutput = halfAdder(a, b)
+            const firstSumOut = parseInt(firstAdderOutput[0])
+            const firstCarryOut = parseInt(firstAdderOutput[1])
+
+            // Then we pass Carry In, First Sum Out as A B to the second adder
+            const secondAdderOutput = halfAdder(cin, firstSumOut)
+            const secondSumOut = parseInt(secondAdderOutput[0])
+            const secondCarryOut = parseInt(secondAdderOutput[1])
+
+            // Then we pass the first Carry Out, and the second Carry Out as inputs to the OR gate
+            const orGateOutput = orGate(secondCarryOut, firstCarryOut)
+
+            // Sum Out     // Carry Out
+            return `${secondSumOut}${orGateOutput}`
+        }
+
+        const fullAdderOutput= () => {
+            let p = document.createElement("p")
+            p.innerText = fullAdder(0, 0, 0)
+            document.getElementById("fullAdderOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = fullAdder(0, 1, 0)
+            document.getElementById("fullAdderOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = fullAdder(1, 0, 0)
+            document.getElementById("fullAdderOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = fullAdder(1, 1, 0)
+            document.getElementById("fullAdderOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = fullAdder(0, 0, 1)
+            document.getElementById("fullAdderOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = fullAdder(0, 1, 1)
+            document.getElementById("fullAdderOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = fullAdder(1, 0, 1)
+            document.getElementById("fullAdderOutput").appendChild(p)
+
+            p = document.createElement("p")
+            p.innerText = fullAdder(1, 1, 1)
+            document.getElementById("fullAdderOutput").appendChild(p)
+        }
+    </script>
 </head>
 
 <body>
@@ -112,8 +307,7 @@
                 <p class="pb-2"> Here is the AND gate I created in JavaScript:
                 </p>
                 <div class="bg-light p-4 pt-1 pb-0">
-                    <pre>
-                        <code>
+                    <pre><code>
 // AND gate
 const andGate = (a, b) => {
     if (a && b) {
@@ -123,8 +317,12 @@ const andGate = (a, b) => {
         // Both inputs are NOT a voltage, therefore the output is NOT a voltage
         return 0
     }
-}</code>
-    </pre>
+}
+
+</code></pre>
+                    <hr>
+                    <button onclick="andGateOutput()" type="button" class="btn btn-outline-primary">Run</button>
+                    <div id="andGateOutput" class="pt-3 pb-1"></div>
                 </div>
             </div>
             <div class="col"></div>
@@ -167,8 +365,12 @@ const orGate = (a, b) => {
         // Neither a nor b are a voltage, therefore the output is NOT a voltage
         return 0
     }
-}</code>
-    </pre>
+}
+
+</code></pre>
+                    <hr>
+                    <button onclick="orGateOutput()" type="button" class="btn btn-outline-primary">Run</button>
+                    <div id="orGateOutput" class="pt-3 pb-1"></div>
                 </div>
                 <p>We can confirm that these implementations obey this truth table.</p>
                 <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/OR_truth.png"
@@ -202,10 +404,14 @@ const nandGate = (a, b) => {
         // Both the inputs are NOT a voltage, therefore the output is a voltage
         return 1
     }
-}</code>
-    </pre>
+}
+
+</code></pre>
+                    <hr>
+                    <button onclick="nandGateOutput()" type="button" class="btn btn-outline-primary">Run</button>
+                    <div id="nandGateOutput" class="pt-3 pb-1"></div>
                 </div>
-                <p>Truth table for the NAND gate:</p>
+                <p class="pt-4">Truth table for the NAND gate:</p>
                 <img src="../../images/posts/binary-adding-machine-in-minecraft-and-javascript/NAND_truth.png"
                     loading="lazy">
                 <p class="pt-3">The following symbol describes the NAND gate.</p>
@@ -255,10 +461,14 @@ const nandGate = (a, b) => {
 // XOR gate
 const xorGate = (a, b) => {
     return andGate(orGate(a, b), nandGate(a, b))
-}</code>
-    </pre>
+}
+
+</code></pre>
+                    <hr>
+                    <button onclick="xorGateOutput()" type="button" class="btn btn-outline-primary">Run</button>
+                    <div id="xorGateOutput" class="pt-3 pb-1"></div>
                 </div>
-                <p>
+                <p class="pt-5">
                     This is great! Now that we can calculate both our carry and our sum bit, we are well on our way to
                     adding two 1-bit binary numbers. We can combine our AND gate and XOR gate to add two binary
                     digits.
@@ -302,8 +512,12 @@ const halfAdder = (a, b) => {
     const carryOut = andGate(a, b)
 
     return `${sumOut}${carryOut}`
-}</code>
-    </pre>
+}
+
+</code></pre>
+                    <hr>
+                    <button onclick="halfAdderOutput()" type="button" class="btn btn-outline-primary">Run</button>
+                    <div id="halfAdderOutput" class="pt-3 pb-1"></div>
                 </div>
             </div>
             <div class="col"></div>
@@ -392,8 +606,12 @@ const fullAdder = (a, b, cin) => {
 
             // Sum Out     // Carry Out
     return `${secondSumOut}${orGateOutput}`
-}</code>
-    </pre>
+}
+
+</code></pre>
+                    <hr>
+                    <button onclick="fullAdderOutput()" type="button" class="btn btn-outline-primary">Run</button>
+                    <div id="fullAdderOutput" class="pt-3 pb-1"></div>
                 </div>
             </div>
             <div class="col"></div>
