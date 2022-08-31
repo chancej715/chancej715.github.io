@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chance Johnson</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/css.css">
+
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html"><strong>Chance Johnson</strong></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="../../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../about.html">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <h1 class="mt-4">RAM in Minecraft and JavaScript</h1>
+                <p class="text-muted">2022-08-26</p>
+                <p>
+                    In this post, I will be going through chapter sixteen of "Code: The Hidden Language of Computer
+                    Hardware and Software" by Charles Petzold. I will follow the instructions in this chapter to create
+                    RAM in Minecraft out of some simple logic gates.
+                </p>
+                <p>
+                    We'll start by creating the assemblage of gates you see in the following picture. This is a
+                    level-triggered D-type flip-flop, capable of storing one bit of information.
+                </p>
+                <img src="../../images/posts/ram-in-minecraft-and-javascript/Lever Triggered D-Type Flip-Flop.png"
+                    loading="lazy" class="img-fluid pt-4 pb-4">
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row mt-4 mb-5">
+            <img src="../../images/posts/ram-in-minecraft-and-javascript/Level Triggered D-type Flip-flop Explanation.gif"
+                class="img-fluid" loading="lazy">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p>I'm not going to go into much detail about this circuit, because we've already covered logic gates in
+                    a <a href="../posts/binary-adding-machine-in-minecraft-and-javascript.html">previous post</a>, and
+                    the picture above clearly shows how the gates are connected.
+                </p>
+                <p>
+                    When the Clock input is 1, the Q output is the same as the Data input.
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row mt-4 mb-5">
+            <img src="../../images/posts/ram-in-minecraft-and-javascript/Clock Input 1.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p>
+                    When the Clock input is 0, the Q output holds the last value of the Data input.
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row mt-4 mb-5">
+            <img src="../../images/posts/ram-in-minecraft-and-javascript/Clock Input 0.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p>
+                    From now on, we'll refer to the Clock input as Write, because this signal causes the Data In signal
+                    to be written to or stored in the circuit. Whenever we want to store the Data In signal in the
+                    flip-flop, we make the Write input 1 and then 0 again.
+                </p>
+                <p class="pb-4">
+                    This type of circuit is also called a "latch" because it latches onto data. This is the symbol we'll
+                    use to refer to a 1-bit latch:
+                </p>
+                <img src="../../images/posts/ram-in-minecraft-and-javascript/1-bit latch.png">
+                <p class="pt-5 pb-4">
+                    We'll make an 8-bit latch by lining up eight of them together and connecting the Write signals like
+                    this:
+                </p>
+                <img src="../../images/posts/ram-in-minecraft-and-javascript/8-bit latch expanded.png"
+                    class="img-fluid">
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row mt-4 mb-5">
+            <img src="../../images/posts/ram-in-minecraft-and-javascript/8-bit latch.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p>
+                    This is great because now we can set the Write signal to 1, and then we can store a signal in each
+                    of the eight latches. The output of each latch will show us the value that's stored in that latch.
+                </p>
+                <p class="pb-4">
+                    Currently, each latch displays the value it has stored, because each output is connected to its own
+                    lamp. We want a way to be able to select which latch we want to see the vimage.pngalue of. To do
+                    this, we
+                    need to connect the output of each latch to a device that allows us to select which of the latch
+                    outputs we want to see. For this, we need an 8-Line-to-1-Line Data Selector. It looks like this:
+                </p>
+                <img src="../../images/posts/ram-in-minecraft-and-javascript/8-Line-to-1-Line Data Selector.png"
+                    class="img-fluid">
+                <p class="pt-5">
+                    There's eight Data inputs to this device, and one Output. On the left side of this device, there are
+                    three switches which allow us to select which of the eight Data inputs we want to see in the output.
+                    Three switches can represent eight different values: 000, 001, 010, 011, 100, 110, and 111.
+                </p>
+                <p class="pb-5">
+                    The 8-to-1 Selector is built from three inverters, eight 4-input AND gates, and an 8-input OR gate,
+                    wired together like this:
+                </p>
+                <img src="../../images/posts/ram-in-minecraft-and-javascript/8-to-1 Selector.png" class="img-fluid">
+                <p class="pt-5 pb-3">
+                    Here is the 4-input AND gate I built in Minecraft (with some help from <a
+                        href="https://www.youtube.com/watch?v=3elcw4L98Y4">this guy</a>):
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row mt-4 mb-5">
+            <img src="../../images/posts/ram-in-minecraft-and-javascript/4-input AND gate.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-2 pb-2">
+                    As you can see, all four inputs must be 1 for the output to be 1.
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row mt-4 mb-5">
+            <img src="../../images/posts/ram-in-minecraft-and-javascript/4-input AND gate test.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-2 pb-2">
+                    Line eight of them up like this:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row mt-4 mb-5">
+            <img src="../../images/posts/ram-in-minecraft-and-javascript/4-input AND gates lined up.gif"
+                class="img-fluid" loading="lazy">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-3 pb-5">
+                    After that, I connected the output of each latch to the input of each of the AND gates. Then I
+                    connected the output of each AND gate to an 8-input OR gate:
+                </p>
+                <img src="../../images/posts/ram-in-minecraft-and-javascript/8 input OR gate.png" class="img-fluid">
+                <p class="pt-5 pb-5">
+                    I used command blocks to connect the outputs and inputs "wirelessly". This is how I created the
+                    arrangement of switches which allow us to select which latch we'd like to see the input of:
+                </p>
+                <img src="../../images/posts/ram-in-minecraft-and-javascript/8-to-1 Selector Switches.png"
+                    class="img-fluid">
+                <p class="pt-5 pb-2">
+                    To recap, this arrangement of switches allows us to select which of the 8 latches we want to see the
+                    value of.
+                </p>
+                <p>
+                    I will demonstrate this now. I will set the Write input of the 8-bit latch to 1. I will
+                    set the Data input of latch 7 (labeled D7) to 1. This causes the Data input of the corresponding
+                    4-input AND gate to be 1. After that, I will fly over to the address input (the three switches), and
+                    I will close all three switches, which represents the address 111 (we can say that the address of
+                    the latch D7 is 111). Now all of the inputs to the D7 latch's corresponding 4-input AND gate are 1,
+                    which causes the output to be 1. This causes one of the inputs to the final 8-input OR gate to be 1,
+                    which causes the output to be 1. This output represents the value that is held in latch D7.
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row mt-4 mb-5">
+            <img src="../../images/posts/ram-in-minecraft-and-javascript/Address Input Example.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pb-4">
+                    As you can see, there's quite a lot going on here, but it's really not that difficult to understand. 
+                    This logic table describes the addresses assigned to each latch. I demonstrated this with latch D7.
+                </p>
+                <img src="../../images/posts/ram-in-minecraft-and-javascript/Address Truth Table.png"
+                    class="img-fluid">
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
