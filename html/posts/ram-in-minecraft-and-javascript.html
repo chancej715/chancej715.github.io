@@ -62,9 +62,11 @@
         <div class="row">
             <div class="col"></div>
             <div class="col-10">
-                <p>I'm not going to go into much detail about this circuit, because we've already covered logic gates in
+                <p>
+                    I'm not going to go into much detail about this circuit, because we've already covered logic gates
+                    in
                     a <a href="../posts/binary-adding-machine-in-minecraft-and-javascript.html">previous post</a>, and
-                    the picture above clearly shows how the gates are connected.
+                    the circuit diagram above clearly shows how the gates are connected.
                 </p>
                 <p>
                     When the Clock input is 1, the Q output is the same as the Data input.
@@ -124,7 +126,7 @@
                 </p>
                 <p class="pb-4">
                     Currently, each latch displays the value it has stored, because each output is connected to its own
-                    lamp. We want a way to be able to select which latch we want to see the vimage.pngalue of. To do
+                    lamp. We want a way to be able to select which latch we want to see the value of. To do
                     this, we
                     need to connect the output of each latch to a device that allows us to select which of the latch
                     outputs we want to see. For this, we need an 8-Line-to-1-Line Data Selector. It looks like this:
@@ -182,12 +184,14 @@
             <div class="col"></div>
             <div class="col-10">
                 <p class="pt-3 pb-5">
-                    After that, I connected the output of each latch to the input of each of the AND gates. Then I
+                    After that, I connected the output of each latch to the leftmost input of each of the AND gates.
+                    Then I
                     connected the output of each AND gate to an 8-input OR gate:
                 </p>
                 <img src="../../images/posts/ram-in-minecraft-and-javascript/8 input OR gate.png" class="img-fluid">
                 <p class="pt-5 pb-5">
-                    I used command blocks to connect the outputs and inputs "wirelessly". This is how I created the
+                    I used command blocks to connect the outputs and inputs wirelessly, but it works exactly the same as
+                    connecting them with redstone. This is how I created the
                     arrangement of switches which allow us to select which latch we'd like to see the input of:
                 </p>
                 <img src="../../images/posts/ram-in-minecraft-and-javascript/8-to-1 Selector Switches.png"
@@ -198,9 +202,10 @@
                 </p>
                 <p>
                     I will demonstrate this now. I will set the Write input of the 8-bit latch to 1. I will
-                    set the Data input of latch 7 (labeled D7) to 1. This causes the Data input of the corresponding
+                    set the Data input of the eighth latch (labeled D7) to 1. This causes the Data input of the
+                    corresponding
                     4-input AND gate to be 1. After that, I will fly over to the address input (the three switches), and
-                    I will close all three switches, which represents the address 111 (we can say that the address of
+                    I will close all three switches, which represents the address 111 (we might say that the address of
                     the latch D7 is 111). Now all of the inputs to the D7 latch's corresponding 4-input AND gate are 1,
                     which causes the output to be 1. This causes one of the inputs to the final 8-input OR gate to be 1,
                     which causes the output to be 1. This output represents the value that is held in latch D7.
@@ -216,11 +221,109 @@
             <div class="col"></div>
             <div class="col-10">
                 <p class="pb-4">
-                    As you can see, there's quite a lot going on here, but it's really not that difficult to understand. 
-                    This logic table describes the addresses assigned to each latch. I demonstrated this with latch D7.
+                    As you can see, there's quite a lot going on here, but it's really not that difficult to understand.
+                    This logic table describes the addresses (inputs side) assigned to each latch (outputs side):
                 </p>
-                <img src="../../images/posts/ram-in-minecraft-and-javascript/Address Truth Table.png"
+                <img src="../../images/posts/ram-in-minecraft-and-javascript/Address Truth Table.png" class="img-fluid">
+                <p class="pt-5 pb-2">
+                    We're trying to wire eight 1-bit latches so that they can be individually written to using a single
+                    Data In signal and individually examined using a single Data Out signal. We're now able to examine
+                    the output using a single Data Out signal, so we're about halfway done.
+                </p>
+                <p class="pb-5">
+                    The input side includes the Data input signals to each latch and the Write signal. We've connected
+                    the Write signal of each latch together, so that we only have to activate a single switch to write
+                    to each individual latch. However, we still have to activate the Data In signal of each individual
+                    latch to save a signal in it. Let's recall that the Write signal must be 1 for the Data In signal to
+                    be stored on the latch. If the Write signal is 0 for an individual latch, then the Data In signal
+                    for that latch doesn't have any effect. So actually, if we connected the Data In signal of each
+                    latch together, then we would just need a way to select which latch we want the Write signal to go
+                    to. That way, the Data In signal will be written to only the latch which we select. It will look
+                    like this:
+                </p>
+                <img src="../../images/posts/ram-in-minecraft-and-javascript/3-to-8 decoder explained.png"
                     class="img-fluid">
+                <p class="pt-5 pb-5">
+                    The "What Is This?" part above will be a component that is similar to the 8-to-1 Selector but
+                    actually does the opposite. It's called the 3-to-8 Decoder. The 3-to-8 Decoder has eight
+                    Outputs. At any time, all but one of the Outputs are 0. The exception is the Output that's
+                    selected by the S0, S1, and S2 inputs. This Output is the same as the Data Input. Here's
+                    the circuit expanded:
+                </p>
+                <img src="../../images/posts/ram-in-minecraft-and-javascript/3-to-8 Decoder.png" class="img-fluid">
+                <p class="pt-5 mt-3">
+                    In Minecraft, I built this in the same way as the 8-to-1 Selector, but with the circuitry you see
+                    in the above diagram.
+                </p>
+                <p class="pb-4">
+                    Here is the full circuit now:
+                </p>
+                <img src="../../images/posts/ram-in-minecraft-and-javascript/Complete Circuit.png" class="img-fluid">
+                <p class="pt-5">
+                    In the diagram above, you'll notice the three Select signals on the Decoder and
+                    Selector are now connected and labeled Address. This 3-bit address determines which of the eight
+                    1-bit
+                    latches is being referenced. On the 3-to-8 Decoder, this address determines which latch we want to
+                    send the Write signal to, so that we can store that signal in the desired latch.
+
+                    On the 8-to-1 Selector, this address input determines which latch we want to see the Output of.
+                    This way, all we have to do is specify the 3-bit address of one of the 8 latches, and then we
+                    can read or write to and from that latch with a single Data Input and a single Data Output.
+                    Pretty convienient!
+                </p>
+                <p class="pt-5 pb-4">
+                    And here's what it looks like in Minecraft:
+                </p>
+                <img src="../../images/posts/ram-in-minecraft-and-javascript/Complete Circuit Minecraft.png"
+                    class="img-fluid">
+                <p class="pt-5">
+                    This configuration of latches is called random access memory, or RAM. It's called random access
+                    memory, because each of the eight latches can be read from or written to simply by changing
+                    the address input. Other types of memory have to be read sequentially (you have to read the value
+                    stored at address 100 before you could read the value stored at address 101, and so on). For
+                    example,
+                    many
+                    organizations today still use tape drives for storing important backups, because it's a cheaper
+                    alternative to a hard drive, or solid state drive.
+                </p>
+                <p>
+                    A particular configuration of RAM is often referred to as a RAM array. This particular RAM array
+                    is organized in a manner called in abbreviated form 8x1 (pronounced eight by one). Each of the
+                    eight values in the array is 1 bit. You can multiply the two values to get the total number of
+                    bits that can be stored in the RAM array.
+                </p>
+                <p>
+                    Now all that's left to do is create the control panel and connect it to the Address, Write, and Data
+                    In inputs, and connect the Data Out to a lamp on the panel.
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row mt-4 mb-5">
+            <img src="../../images/posts/ram-in-minecraft-and-javascript/RAM test.gif" class="img-fluid" loading="lazy">
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p>
+                    Here I have made the control panel. I put the Write signal on the top left, Data In on top right, the
+                    Address on the bottom, and the Data Out signal is the lamp on the right. 
+                </p>
+                <p>
+                    At first, none of the levers (or switches) in the Address are activated, indicating address 000.
+                    I key in the address 101, and then I activate the Write and Data In signals. This causes the Data In signal
+                    to be stored in latch D5, which has an address of 101. After that, I deactivate the Write and Data In
+                    levers, and then I deactivate the Address levers, to go back to address 000. We didn't store anything
+                    on this address, so the Data Out lamp is not lit up. After that, I key in the address 101, but this time
+                    the lamp lights up, because we wrote the Data In signal to it. It works! 
+                </p>
+                <p class="pb-5">
+                    This is really neat because we can use this RAM array to store any 8-bit value. I did this all with
+                    instructions from chapter sixteen of "Code: The Hidden Language of Hardware and Software" by Charles Petzold.
+                    Later on in the chapter, Charles shows you how you can connect multiple RAM arrays together to create
+                    a larger RAM array so that you can store more information. I highly encourage you to read it! You can find
+                    the book <a href="https://www.amazon.com/Code-Language-Computer-Hardware-Software/dp/0735611319">here</a>.
+                </p>
             </div>
             <div class="col"></div>
         </div>
