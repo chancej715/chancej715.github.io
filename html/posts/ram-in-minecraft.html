@@ -45,8 +45,7 @@
                     In this post, I will be going through chapter sixteen of "Code: The Hidden Language of Computer
                     Hardware and Software" by Charles Petzold. I will follow the instructions in this chapter to create
                     RAM in Minecraft out of some simple logic gates. If you want to take a look for yourself in
-                    Minecraft,
-                    you can download the schematic <a
+                    Minecraft, you can download the schematic <a
                         href="https://drive.google.com/file/d/1NfGz4bIdtsGoaixqfZsP4Ca1Jei13EBb/view?usp=sharing">here</a>.
                 </p>
                 <p>
@@ -67,9 +66,8 @@
             <div class="col-10">
                 <p>
                     I'm not going to go into much detail about this circuit, because we've already covered logic gates
-                    in
-                    a <a href="../posts/binary-adding-machine-in-minecraft.html">previous post</a>, and
-                    the circuit diagram above clearly shows how the gates are connected.
+                    in a <a href="../posts/binary-adding-machine-in-minecraft-and-javascript.html">previous post</a>, and the circuit
+                    diagram above clearly shows how the gates are connected.
                 </p>
                 <p>
                     When the Clock input is 1, the Q output is the same as the Data input.
@@ -85,8 +83,7 @@
             <div class="col-10">
                 <p>
                     When the Clock input is 0, the Q output holds the last value of the Data input. This means we can
-                    use
-                    this circuit to store 1-bit of information for later use.
+                    use this circuit to store 1-bit of information for later use.
                 </p>
             </div>
             <div class="col"></div>
@@ -183,14 +180,13 @@
             <div class="col-10">
                 <p class="pt-3 pb-5">
                     After that, I connected the output of each latch to the leftmost input of each of the AND gates.
-                    Then I
-                    connected the output of each AND gate to an 8-input OR gate:
+                    Then I connected the output of each AND gate to an 8-input OR gate:
                 </p>
                 <img src="../../images/posts/ram-in-minecraft/8 input OR gate.png" class="img-fluid">
                 <p class="pt-5 pb-5">
                     I used command blocks to connect the outputs and inputs wirelessly, but it works exactly the same as
-                    connecting them with redstone. This is how I created the
-                    arrangement of switches which allow us to select which latch we'd like to see the input of:
+                    connecting them with redstone. This is how I created the arrangement of switches which allow us to
+                    select which latch we'd like to see the input of:
                 </p>
                 <img src="../../images/posts/ram-in-minecraft/8-to-1 Selector Switches.png" class="img-fluid">
                 <p class="pt-5 pb-2">
@@ -200,12 +196,12 @@
                 <p>
                     I will demonstrate this now. I will set the Write input of the 8-bit latch to 1. I will
                     set the Data input of the eighth latch (labeled D7) to 1. This causes the Data input of the
-                    corresponding
-                    4-input AND gate to be 1. After that, I will fly over to the address input (the three switches), and
-                    I will close all three switches, which represents the address 111 (we might say that the address of
-                    the latch D7 is 111). Now all of the inputs to the D7 latch's corresponding 4-input AND gate are 1,
-                    which causes the output to be 1. This causes one of the inputs to the final 8-input OR gate to be 1,
-                    which causes the output to be 1. This output represents the value that is held in latch D7.
+                    corresponding 4-input AND gate to be 1. After that, I will fly over to the address input (the three
+                    switches), and I will close all three switches, which represents the address 111 (we might say that
+                    the address of the latch D7 is 111). Now all of the inputs to the D7 latch's corresponding 4-input
+                    AND gate are 1, which causes the output to be 1. This causes one of the inputs to the final 8-input
+                    OR gate to be 1, which causes the output to be 1. This output represents the value that is held in
+                    latch D7.
                 </p>
             </div>
             <div class="col"></div>
@@ -247,19 +243,18 @@
                 </p>
                 <img src="../../images/posts/ram-in-minecraft/3-to-8 Decoder.png" class="img-fluid">
                 <p class="pt-5 mt-3">
-                    In Minecraft, I built this in the same way as the 8-to-1 Selector, but with the circuitry you see
-                    in the above diagram.
+                    In Minecraft, I built this in the same way as the 8-to-1 Selector, but with the circuitry you see in
+                    the above diagram.
                 </p>
                 <p class="pb-4">
                     Here is the full circuit now:
                 </p>
                 <img src="../../images/posts/ram-in-minecraft/Complete Circuit.png" class="img-fluid">
                 <p class="pt-5">
-                    In the diagram above, you'll notice the three Select signals on the Decoder and
-                    Selector are now connected and labeled Address. This 3-bit address determines which of the eight
-                    1-bit
-                    latches is being referenced. On the 3-to-8 Decoder, this address determines which latch we want to
-                    send the Write signal to, so that we can store that signal in the desired latch.
+                    In the diagram above, you'll notice the three Select signals on the Decoder and Selector are now
+                    connected and labeled Address. This 3-bit address determines which of the eight 1-bit latches is
+                    being referenced. On the 3-to-8 Decoder, this address determines which latch we want to send the
+                    Write signal to, so that we can store that signal in the desired latch.
 
                     On the 8-to-1 Selector, this address input determines which latch we want to see the Output of.
                     This way, all we have to do is specify the 3-bit address of one of the 8 latches, and then we
@@ -297,30 +292,22 @@
             <div class="col-10">
                 <p>
                     Here I have made the control panel. I put the Write signal on the top left, Data In on top right,
-                    the
-                    Address on the bottom, and the Data Out signal is the lamp on the right.
+                    the Address on the bottom, and the Data Out signal is the lamp on the right.
                 </p>
                 <p>
                     At first, none of the levers (or switches) in the Address are activated, indicating address 000.
                     I key in the address 101, and then I activate the Write and Data In signals. This causes the Data In
-                    signal
-                    to be stored in latch D5, which has an address of 101. After that, I deactivate the Write and Data
-                    In
-                    levers, and then I deactivate the Address levers, to go back to address 000. We didn't store
-                    anything
-                    on this address, so the Data Out lamp is not lit up. After that, I key in the address 101, but this
-                    time
-                    the lamp lights up, because we wrote the Data In signal to it. It works!
+                    signal to be stored in latch D5, which has an address of 101. After that, I deactivate the Write and
+                    Data In levers, and then I deactivate the Address levers, to go back to address 000. We didn't store
+                    anything on this address, so the Data Out lamp is not lit up. After that, I key in the address 101,
+                    but this time the lamp lights up, because we wrote the Data In signal to it. It works!
                 </p>
                 <p class="pb-5">
                     This is really neat because we can use this RAM array to store any 8-bit value. I did this all with
                     instructions from chapter sixteen of "Code: The Hidden Language of Hardware and Software" by Charles
-                    Petzold.
-                    Later on in the chapter, Charles shows you how you can connect multiple RAM arrays together to
-                    create
-                    a larger RAM array so that you can store more information. I highly encourage you to read it! You
-                    can find
-                    the book <a
+                    Petzold. Later on in the chapter, Charles shows you how you can connect multiple RAM arrays together
+                    to create a larger RAM array so that you can store more information. I highly encourage you to read
+                    it! You can find the book <a
                         href="https://www.amazon.com/Code-Language-Computer-Hardware-Software/dp/0735611319">here</a>.
                 </p>
             </div>
