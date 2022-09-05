@@ -28,33 +28,6 @@
             </div>
         </div>
     </nav>
-
-    <script>
-        const onesComplement = (num) => {
-            let onesCompArr = []
-
-            for (let i = 0; i < num.length; i++) {
-                if (parseInt(num[i])) {
-                    onesCompArr.push(0)
-                } else {
-                    onesCompArr.push(1)
-                }
-            }
-
-            return onesCompArr.join('')
-        }
-
-        const onesComplementOutput = () => {
-            let p = document.createElement("p")
-            p.className = "text-secondary"
-            p.innerText = "// onesComplement(01100001)"
-            document.getElementById("onesComplementOutput").appendChild(p)
-
-            p = document.createElement("p")
-            p.innerText = onesComplement('01100001')
-            document.getElementById("onesComplementOutput").appendChild(p)
-        }
-    </script>
 </head>
 
 <body>
@@ -66,7 +39,12 @@
                 <p class="text-muted">2022-09-04</p>
                 <p class="pb-5">
                     In this post, I would like to describe how I created an 8-bit accumulator in Minecraft using
-                    edge-triggered D-type latches. To do all this, I followed the instructions in chapter fourteen of
+                    edge-triggered D-type latches. If you would like to check it out for yourself, you can download the
+                    schematic file <a
+                        href="https://drive.google.com/file/d/1oDmHK7Bk-M28AdV28ctkOzNymGfzlm8t/view?usp=sharing">here</a>.
+
+
+                    To do all this, I followed the instructions in chapter fourteen of
                     "Code: The Hidden Language of Computer Hardware and Software" by Charles Petzold. I'll start by
                     describing the difference between a level-triggered D-type latch, and an
                     edge-triggered D-type latch. This diagram describes a level-triggered D-type latch:
@@ -75,7 +53,9 @@
                     class="img-fluid" loading="lazy">
                 <p class="pt-5">
                     This circuit can also be referred to as 1-bit memory, because it "latches" or holds on to 1 bit of
-                    information. If you're interested in making an 8x1 stick of
+                    information. You can download the schematic of this latch <a
+                        href="https://drive.google.com/file/d/1Mqla1bVN_unamLHkAsHCn2cvo6I5xXLz/view?usp=sharing">here</a>.
+                    If you're interested in making an 8x1 stick of
                     RAM in Minecraft using this circuit, check out <a
                         href="file:///home/clear/work/chancej715.github.io/html/posts/ram-in-minecraft.html">this
                         post</a>.
@@ -121,7 +101,9 @@
                 <img src="../../images/posts/8-bit-accumulator-in-minecraft/Edge-Triggered D-type Latch.png"
                     class="img-fluid" loading="lazy">
                 <p class="pt-5 pb-3">
-                    And here it is in Minecraft:
+                    The schematic for this latch can be
+                    found <a
+                        href="https://drive.google.com/file/d/1x7CWY65uTRHvz7w3IzJWn-SpFfg-_M5j/view?usp=sharing">here</a>. Here it is in Minecraft:
                 </p>
             </div>
             <div class="col"></div>
@@ -135,7 +117,8 @@
             <div class="col-10">
                 <p class="pb-3 pt-3">
                     The reason it's called "edge-triggered" is because the value of the Data input is stored at the
-                    precise moment that the Clock input's value goes from 0 to 1. Here I will demonstrate:
+                    precise moment that the Clock input's value goes from 0 to 1.
+                    Here I will demonstrate:
                 </p>
             </div>
             <div class="col"></div>
