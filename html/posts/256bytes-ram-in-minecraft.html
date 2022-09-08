@@ -68,7 +68,7 @@
             <div class="col-10">
                 <p class="pt-5 pb-4">
                     You can download the schematic <a
-                        href="https://drive.google.com/file/d/101Bq6ZLaYMTqv2gnL_Vtbi0sZ7kzTDUM/view?usp=sharing">here</a>.
+                        href="https://drive.google.com/file/d/1fqC4f3H2eIqiO8162-UbYseTGoESqQci/view?usp=sharing">here</a>.
                     Now I will test this NAND gate implementation on the following truth table:
                 </p>
                 <img src="../../images/posts/256bytes-ram-in-minecraft/NAND Truth Table.png" class="img-fluid pb-4"
@@ -79,15 +79,15 @@
         </div>
 
         <div class="row mt-4">
-            <img src="../../images/posts/256bytes-ram-in-minecraft/NAND Truth Test.gif" class="img-fluid"
-                loading="lazy">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/NAND Gate Test.gif" class="img-fluid" loading="lazy">
         </div>
 
         <div class="row">
             <div class="col"></div>
             <div class="col-10">
                 <p class="pt-5 pb-4">
-                    As you can see, the redstone lamp only turns off when both inputs are on. This is the only logic
+                    As you can see, the redstone lamp only turns off when both inputs are on. In fact, this is the only
+                    logic
                     gate you need to build a computer. Pretty neat! Now I'll connect both of the inputs to form this
                     gate:
                 </p>
@@ -98,7 +98,7 @@
         </div>
 
         <div class="row mt-4">
-            <img src="../../images/posts/256bytes-ram-in-minecraft/NAND to NOT gate.gif" class="img-fluid"
+            <img src="../../images/posts/256bytes-ram-in-minecraft/Connect NAND Gate.gif" class="img-fluid"
                 loading="lazy">
         </div>
 
@@ -117,7 +117,8 @@
         </div>
 
         <div class="row mt-4">
-            <img src="../../images/posts/256bytes-ram-in-minecraft/NOT Gate Test.gif" class="img-fluid" loading="lazy">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/NAND to NOT Gate Test.gif" class="img-fluid"
+                loading="lazy">
         </div>
 
         <div class="row">
@@ -175,7 +176,7 @@
         </div>
 
         <div class="row mt-4">
-            <img src="../../images/posts/256bytes-ram-in-minecraft/AND gate.gif" class="img-fluid" loading="lazy">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/AND Gate.gif" class="img-fluid" loading="lazy">
         </div>
 
         <div class="row">
@@ -192,8 +193,7 @@
         </div>
 
         <div class="row mt-4">
-            <img src="../../images/posts/256bytes-ram-in-minecraft/Expanded AND Gate Truth Test.gif" class="img-fluid"
-                loading="lazy">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/AND Gate Test.gif" class="img-fluid" loading="lazy">
         </div>
 
         <div class="row">
@@ -212,20 +212,20 @@
                     loading="lazy">
                 <p class="pt-4">
                     You can download the schematic for this gate <a
-                        href="https://drive.google.com/file/d/1tvgUq8IpZEjE8RyLItAbdAoJmfU_GgSP/view?usp=sharing">here</a>.
-                    In fact, there's a much simpler way to create the AND gate in Minecraft, but I want to follow along
-                    with the book as closely as possible, so for the purposes of this post, I will not show how to
-                    create the simplified version.
+                        href="https://drive.google.com/file/d/1_Nvw1_C9pZAlClg11rykVCJHHAJyd70L/view?usp=sharing">here</a>.
                 </p>
                 <p>
                     You'll notice that the output of the AND gate is the opposite of the NAND gate, and vice-versa. For
-                    the AND gate, both the first input AND the second input must be 1 in order for the output to be 1.
-                    As for the NAND gate, the opposite is true.
+                    the AND gate, both the first input AND the second input must be on in order for the output to be on.
+                    As for the NAND gate, both the first input and the second input must be on, in order for the output
+                    to be off.
                 </p>
                 <h4 class="mt-5">Memory</h4>
                 <p class="pb-4">
                     Now that I've shown you how to make a NAND gate, I'll show you how they can be combined to store one
-                    bit of memory. The following circuit describes 1-bit of computer memory:
+                    bit of memory. The following circuit can store one bit of computer memory, and is entirely made up
+                    of
+                    NAND gates:
                 </p>
                 <img src="../../images/posts/256bytes-ram-in-minecraft/1-bit Memory.png" class="img-fluid pb-4"
                     loading="lazy">
@@ -245,22 +245,16 @@
             <div class="col-10">
                 <p class="pt-5">
                     I encourage you to download the schematic <a
-                        href="https://drive.google.com/file/d/1bs7x3Xbx69KtwoDu3IqP0KxCgn_iAZlc/view?usp=sharing">here</a>
+                        href="https://drive.google.com/file/d/1rfkkPKKTWhEPlqat980n5HsEk7NauPq0/view?usp=sharing">here</a>
                     and follow along in Minecraft. Being able to visibily see where the electricity is flowing helps
                     tremendously in
-                    understanding how this circuit works. This circuit will be the building block for the following
-                    circuits and the RAM itself.
+                    understanding how this circuit works. This circuit will be the building block for the RAM itself, so
+                    understanding how it works is vital to understanding how the following RAM configuration works.
                 </p>
                 <p>
                     It works like this: the lever on the left corresponds to "i" in the diagram. This is the lever
                     that should be used to input the bit to be remembered. The lever on the right corresponds to "s" in
-                    the diagram. In Minecraft I replaced the redstone wire with repeaters and set them to their slowest
-                    setting. I
-                    also set the time to night. I did this to make it as clear as possible how the bit is travelling
-                    through the wire:
-                </p>
-                <p>
-                    I'll follow what the book says, and set the "s" input to 1 and leave the
+                    the diagram. I'll follow what the book says, and set the "s" input to 1 and leave the
                     "i" input as 0:
                 </p>
             </div>
@@ -268,7 +262,7 @@
         </div>
 
         <div class="row mt-4">
-            <img src="../../images/posts/256bytes-ram-in-minecraft/1 Bit Memory I0S1 Annotated.gif" class="img-fluid"
+            <img src="../../images/posts/256bytes-ram-in-minecraft/1 Bit Memory Annotated 1.gif" class="img-fluid"
                 loading="lazy">
         </div>
 
@@ -277,21 +271,20 @@
             <div class="col-10">
                 <ul class="list-group pt-5">
                     <li class="list-group-item">
-                        As you can see, "i" and "s" go into gate 1. We just turned "s" on, so one input to gate 1 is on,
-                        but the other input is off, meaning the output of gate 1 (the wire "a") remains on.
+                        As you can see, "i" and "s" go into gate 1. I just turned "s" on, so one input to gate 1 is on,
+                        but the other input is off, therefore the output of gate 1 (the wire "a") remains on.
                     </li>
                     <li class="list-group-item">
-                        The wire "a" and the input "s" are both on and they are inputs to gate 2. Since both inputs to
-                        gate
-                        2
-                        are on, the output (the wire "b") is off.
+                        "A" and "s" are both inputs to gate 2. Since they are both on, the output of gate 2, the wire
+                        "b", is off.
                     </li>
                     <li class="list-group-item">
-                        Now the wire "b", which is an input to gate 2 is off, therefore the output of gate 2, wire "c"
+                        Now the wire "b", which is an input to gate 4, is off, therefore the output of gate 4, wire "c",
                         is on.
                     </li>
                     <li class="list-group-item">
-                        Wire "c" and and "a" are both on, and are inputs to gate 3, so the output of gate 3, "o", is
+                        Wire "c" and and "a" are both on. They are both inputs to gate 3, therefore the output of gate
+                        3, "o", is
                         off.
                     </li>
                 </ul>
@@ -304,7 +297,7 @@
         </div>
 
         <div class="row mt-4">
-            <img src="../../images/posts/256bytes-ram-in-minecraft/1 Bit Memory I1S1.gif" class="img-fluid"
+            <img src="../../images/posts/256bytes-ram-in-minecraft/1 Bit Memory Annotated 2.gif" class="img-fluid"
                 loading="lazy">
         </div>
 
@@ -313,12 +306,12 @@
             <div class="col-10">
                 <ul class="list-group pt-5">
                     <li class="list-group-item">
-                        Now with "s" still on, I change the "i" to on as well. Now both inputs to gate 1 are turned on,
+                        With "s" still on, I change "i" to on. Now both inputs to gate 1 are turned on,
                         therefore its output (the wire "a") is off.
                     </li>
                     <li class="list-group-item">
-                        The wire "a" goes to an input of gate 2 and gate 3. Now that "a" is off, the output of gate 2
-                        (wire "b") is on, and the output of gate 3, "o", is on.
+                        The wire "a" goes to an input of gate 2 and gate 3. Now that "a" is off, the output of gate 2,
+                        wire "b" is on, and the output of gate 3, "o", is on.
                     </li>
                     <li class="list-group-item">
                         The output "o" and the wire "b", which are inputs to gate 4, are now both on. This means the
@@ -337,7 +330,7 @@
         </div>
 
         <div class="row mt-2">
-            <img src="../../images/posts/256bytes-ram-in-minecraft/1 Bit Memory I0S1 Again.gif" class="img-fluid"
+            <img src="../../images/posts/256bytes-ram-in-minecraft/1 Bit Memory Annotated 3.gif" class="img-fluid"
                 loading="lazy">
         </div>
 
@@ -353,7 +346,7 @@
         </div>
 
         <div class="row mt-4">
-            <img src="../../images/posts/256bytes-ram-in-minecraft/1 Bit Memory I1S1.gif" class="img-fluid"
+            <img src="../../images/posts/256bytes-ram-in-minecraft/1 Bit Memory Annotated 4.gif" class="img-fluid"
                 loading="lazy">
         </div>
 
@@ -368,7 +361,7 @@
         </div>
 
         <div class="row mt-4 pb-5">
-            <img src="../../images/posts/256bytes-ram-in-minecraft/1 Bit in Memory.gif" class="img-fluid"
+            <img src="../../images/posts/256bytes-ram-in-minecraft/1 Bit Memory Annotated 5.gif" class="img-fluid"
                 loading="lazy">
         </div>
 
@@ -380,13 +373,8 @@
                         When "s" turns off, the wire "a" will be on no matter what the value of "i" is.
                     </li>
                     <li class="list-group-item">
-                        Notice how the "i" no longer effects the output "o", while "s" is turned off. It's only
-                        when "s" is turned on that we can change the value of "o" by changing the value of "i".
-                    </li>
-                    <li class="list-group-item">
-                        The wire "a" is an input to gate 2, however the other input to gate 2 is still off, so its
-                        output
-                        (wire "b") remains on.
+                        The wire "a" is an input to gate 2. The other input to gate 2 is still off, so its
+                        output, wire "b", remains on.
                     </li>
                 </ul>
                 <p class="pt-5">
@@ -397,7 +385,7 @@
         </div>
 
         <div class="row mt-4">
-            <img src="../../images/posts/256bytes-ram-in-minecraft/s off pulse i test.gif" class="img-fluid"
+            <img src="../../images/posts/256bytes-ram-in-minecraft/1 Bit Memory Annotated 6.gif" class="img-fluid"
                 loading="lazy">
         </div>
 
@@ -411,12 +399,96 @@
                     output "o"!
                 </p>
                 <p>
-                    To get rid of this bit, remember that the "s" input must be on in order for the value of "o" to be
-                    the same as "i". So all you need to do is set the value of "s" to on, and then turn off "i".
+                    Not only can we store a bit of information in this circuit,
+                    but we can just as easily store no bit. I will demonstrate. With the "s" and "i" inputs both on, I
+                    will
+                    turn off the "i" input:
                 </p>
             </div>
             <div class="col"></div>
         </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/1 Bit Memory Annotated 7.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    As you'll recall, when the input "s" is turned on, the output "o" will be the same as the input "i".
+                    Now, while "i" is off, I will also turn "s" off:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/1 Bit Memory Annotated 8.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    So now we have "i" off, "s" off, and "o" off. Watch what happens when I pulse "i":
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/1 Bit Memory Annotated 9.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    Again, absolutely nothing! So we have effectively "stored" nothing in this circuit. This may sound
+                    useless, but it's actually very important, because it means we can not only store a bit, but we can
+                    also effectively store the absence of a bit. In other words, we can store 1s and 0s.
+                </p>
+                <p class="pb-2">
+                    This is the basic building block of all computer memory. To quote the book:
+                </p>
+                <figure>
+                    <blockquote class="blockquote">
+                        <p>All that computer memory is, is a way of preserving the way a bit was set at some point in
+                            time.</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer">
+                        J. Clark Scott in <cite
+                            title="But How Do It Know? The Basic Principles of Computers for Everyone">But How Do It
+                            Know?</cite>
+                    </figcaption>
+                </figure>
+                <p class="pt-4 pb-5">
+                    This is the symbol I will use to refer to this 1-bit memory circuit:
+                </p>
+                <img src="../../images/posts/256bytes-ram-in-minecraft/1-bit Memory Smaller.png" class="img-fluid pb-4"
+                    loading="lazy">
+                <p class="pt-4">
+                    The input "i" is the input bit you want to save. When the "s" bit is on, it allows the input "i"
+                    into the memory circuit. When "s" is turned off, it locks "i" in place, or "sets" it. The output "o"
+                    represents the current or saved data. The "M" stands for memory. We can refer to this as a 1-bit
+                    memory, because it is capable of remembering 1 bit of information.
+                </p>
+                <h4 class="mt-5">Bytes</h4>
+                <p>
+                    Now I'll stack up eight of these 1-bit memory circuits and connect their "s" inputs to create a
+                    byte.
+                </p>
+                <p>
+
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
