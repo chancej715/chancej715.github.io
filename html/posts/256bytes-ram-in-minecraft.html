@@ -477,18 +477,315 @@
                     represents the current or saved data. The "M" stands for memory. We can refer to this as a 1-bit
                     memory, because it is capable of remembering 1 bit of information.
                 </p>
-                <h4 class="mt-5">Bytes</h4>
+                <h4 class="mt-5">Byte</h4>
                 <p>
                     Now I'll stack up eight of these 1-bit memory circuits and connect their "s" inputs to create a
-                    byte.
+                    byte, like this:
                 </p>
-                <p>
+                <img src="../../images/posts/256bytes-ram-in-minecraft/Byte.png" class="img-fluid pb-4" loading="lazy">
+            </div>
+            <div class="col"></div>
+        </div>
 
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/Byte.gif" class="img-fluid" loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    I used command blocks to connect their "s" inputs wirelessly:
                 </p>
             </div>
             <div class="col"></div>
         </div>
 
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/1 Byte Connected 's'.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-4">
+                    This assembly of eight 1-bit memory circuits with their "s" inputs connected is referred to as a
+                    byte.
+                    You can download the schematic <a
+                        href="https://drive.google.com/file/d/1k9s540lae8fBYcVBVMQNL6DL3_VXTAVC/view?usp=sharing">here</a>.
+                    This picture describes a byte:
+                </p>
+                <img src="../../images/posts/256bytes-ram-in-minecraft/Byte Diagram.png" class="img-fluid pb-4"
+                    loading="lazy">
+                <p class="pt-4 pb-4">
+                    Now I'll stack eight AND gates on top of eachother and connect one of their inputs to make an
+                    additional part called an enabler. It
+                    looks like this:
+                </p>
+                <img src="../../images/posts/256bytes-ram-in-minecraft/Enabler.png" class="img-fluid pb-4"
+                    loading="lazy">
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/Enabler.gif" class="img-fluid" loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    I used command blocks to connect the "e" inputs wirelessly, just like the byte. You can download the
+                    schematic <a
+                        href="https://drive.google.com/file/d/1CGqkEi9PbgJ21DTh2Co0UH9VcCyEtMwH/view?usp=sharing">here</a>.
+                </p>
+                <p class="pb-4">
+                    This is the picture I will use to refer to this circuit:
+                </p>
+                <img src="../../images/posts/256bytes-ram-in-minecraft/Enabler Small.png" class="img-fluid pb-4"
+                    loading="lazy">
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/Enabler Demonstration.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-4">
+                    As you can see, the output of the enabler will reflect its "i" input, only if the "e" input is set
+                    to 1. If the "e" input is set to 0, then the output will always be 0. Now I'll connect the eight
+                    outputs of the byte circuit to the inputs of the enabler circuit, like this:
+                </p>
+
+                <img src="../../images/posts/256bytes-ram-in-minecraft/Byte and Enabler.png" class="img-fluid pb-4"
+                    loading="lazy">
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/Connect Byte to Enabler.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    This combination of a byte and an enabler is called a register. To quote the book:
+                </p>
+                <figure>
+                    <blockquote class="blockquote">
+                        <p>Register simply means a place to record some kind of information.</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer">
+                        J. Clark Scott in <cite
+                            title="But How Do It Know? The Basic Principles of Computers for Everyone">But How Do It
+                            Know?</cite>
+                    </figcaption>
+                </figure>
+
+                <p class="pb-4">
+                    In this case, we store the state of the eight input bits. You can download the schematic <a
+                        href="https://drive.google.com/file/d/1P_KXCov-l7O7vlI0Tb2zcSqTiIFhmv22/view?usp=sharing">here</a>.
+                    This
+                    is the picture I'll use to
+                    refer to a
+                    register:
+                </p>
+                <img src="../../images/posts/256bytes-ram-in-minecraft/Register.png" class="img-fluid" loading="lazy">
+                <p class="pt-5">
+                    Now I will demonstrate how to use the register:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/Register Demonstration.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    First, I will store a bit in the memory circuit.
+                    Then I will fly to the output of the memory circuit, which is connected to the input of the enabler.
+                    Notice how the output of the enabler is still 0. It's only when I set the "e" or "enable" bit to 1,
+                    that the enabler output reflects the value of its data input.
+                </p>
+                <p class="pb-3">
+                    In other words, the "e" bit on the enabler enables you to see what's stored inside the
+                    memory circuit it's connected to. If the "e" bit on the enabler is 0, then the output
+                    will always be 0.
+                </p>
+                <p>
+                    The "s" input on the register will be referred to as the "set" bit, because it can be used to set
+                    the
+                    value stored inside the register. The "e" input will be referred to as the "enable" bit, because
+                    it can be used to see what value is stored in the register.
+                </p>
+                <h4 class="mt-5">Bus</h4>
+                <p class="pb-4">
+                    Now we need to connect multiple registers together. Since each register has eight memory bits, each
+                    with an input and an output, we'll need exactly eight wires. To simplify the circuit diagram, we can
+                    replace the eight wires with a double line, like this:
+                </p>
+                <img src="../../images/posts/256bytes-ram-in-minecraft/Register Bus.png" class="img-fluid"
+                    loading="lazy">
+                <p class="pt-5 pb-4">
+                    This grouping of eight wires is called a bus. Here's what a bus might look like in Minecraft:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/Bus Demonstration.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-3">
+                    Not much to explain here. Now I'll use a bus to connect five registers
+                    together,
+                    like this:
+                </p>
+                <img src="../../images/posts/256bytes-ram-in-minecraft/5 Registers.png" class="img-fluid pb-4"
+                    loading="lazy">
+
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/5 Register Bus.gif" class="img-fluid" loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    You can download the schematic <a
+                        href="https://drive.google.com/file/d/1lAo1flJpiXE-YMWej4oOV36GBubrIF6g/view?usp=sharing">here</a>.
+                    I will demonstrate how it works by copying a byte from R1 to R4. First I will set the "set" bit
+                    to 1 on R1. Starting from the bottom, I will key in a byte value of 1101 0011.
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/5 Register Bus Demonstration 1.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    Then I will set the "set" bit of R1 to 0 to store this one byte value inside the register. Also I
+                    destroy the
+                    levers I used to set the byte.
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/5 Register Bus Demonstration 2.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    Now I have a one byte value of 1101 0011 stored inside R1. Here I
+                    will show you how it's being stored:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/5 Register Bus Demonstration 3.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    As you can see, the one byte value is preserved in the output of each 1-bit memory circuit. It's
+                    time to copy this byte from R1 to R4. First I will set the "enable" bit of R1 to 1. This will allow
+                    each bit in the byte to pass through the enabler. Each output of the enabler is wirelessly
+                    connected to its own bus lane. Here I will demonstrate:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/5 Register Bus Demonstration 4.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    Upon setting the enable bit to 1, each bit passes through the enabler and onto the appropriate bus
+                    lane. Now the byte 1101 0011 is on the bus. This bus reaches the inputs of all five registers, so
+                    all
+                    that's left to do is briefly set the "set" bit of R4 to 1 and then back to 0:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/5 Register Bus Demonstration 5.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    This allows R4 to capture the data on the bus. Now I will confirm that the byte is stored on R4 by
+                    checking the output of each 1-bit memory on R4:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/5 Register Bus Demonstration 7.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    It appears the byte has been successfully copied to R4. It's important to note that the byte was not
+                    moved to R4, but rather it was copied. A byte is a location that can be in one of 256 states. Bytes
+                    do not move around. The byte only refers to the location.
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
