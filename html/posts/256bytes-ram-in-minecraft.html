@@ -780,8 +780,16 @@
             <div class="col-10">
                 <p class="pt-5">
                     It appears the byte has been successfully copied to R4. It's important to note that the byte was not
-                    moved to R4, but rather it was copied. A byte is a location that can be in one of 256 states. Bytes
+                    moved to R4, but copied. A byte is a location that can be in one of 256 states. Bytes
                     do not move around. The byte only refers to the location.
+                </p>
+                <h4 class="mt-5">Address</h4>
+                <p>
+                    A single byte is capable of referring to exactly 256 unique combinations of 0 and 1. This means we
+                    can use a single byte to refer to 256 different locations in memory. Without a way to uniquely refer
+                    to a location in memory, there's no way to read or write from that memory location. This is why
+                    the number of values that you can store in a RAM array is directly related to the number of address
+                    inputs.
                 </p>
             </div>
             <div class="col"></div>
