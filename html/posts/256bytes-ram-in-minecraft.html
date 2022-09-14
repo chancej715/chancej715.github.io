@@ -216,7 +216,7 @@
                 </p>
                 <p>
                     You'll notice that the output of the AND gate is the opposite of the NAND gate, and vice-versa. For
-                    the AND gate, both the first input AND the second input must be on in order for the output to be on.
+                    the AND gate, both the first input and the second input must be on in order for the output to be on.
                     As for the NAND gate, both the first input and the second input must be on, in order for the output
                     to be off.
                 </p>
@@ -290,7 +290,7 @@
                 </ul>
                 <p class="pt-4">
                     The most important thing to note here is when the "s" input is turned on, the output "o" will
-                    reflect the value of the "i" input. I'll demonstrate:
+                    reflect the value of the "i" input:
                 </p>
             </div>
             <div class="col"></div>
@@ -400,7 +400,7 @@
                 </p>
                 <p>
                     Not only can we store a bit of information in this circuit,
-                    but we can just as easily store no bit. I will demonstrate. With the "s" and "i" inputs both on, I
+                    but we can just as easily store no bit. With the "s" and "i" inputs both on, I
                     will
                     turn off the "i" input:
                 </p>
@@ -559,7 +559,7 @@
             <div class="col"></div>
             <div class="col-10">
                 <p class="pt-5 pb-4">
-                    As you can see, the output of the enabler will reflect its "i" input, only if the "e" input is set
+                    As you can see, the output of the enabler will reflect its "i" input only if the "e" input is set
                     to 1. If the "e" input is set to 0, then the output will always be 0. Now I'll connect the eight
                     outputs of the byte circuit to the inputs of the enabler circuit, like this:
                 </p>
@@ -631,11 +631,12 @@
                     The "s" input on the register will be referred to as the "set" bit, because it can be used to set
                     the
                     value stored inside the register. The "e" input will be referred to as the "enable" bit, because
-                    it can be used to see what value is stored in the register.
+                    it enables you to see what value is stored in the register.
                 </p>
                 <h4 class="mt-5">Bus</h4>
                 <p class="pb-4">
-                    Now we need to connect multiple registers together. Since each register has eight memory bits, each
+                    Now I'll describe how to copy a byte from one register to another. Since each register has eight
+                    memory bits, each
                     with an input and an output, we'll need exactly eight wires. To simplify the circuit diagram, we can
                     replace the eight wires with a double line, like this:
                 </p>
@@ -785,11 +786,272 @@
                 </p>
                 <h4 class="mt-5">Address</h4>
                 <p>
-                    A single byte is capable of referring to exactly 256 unique combinations of 0 and 1. This means we
-                    can use a single byte to refer to 256 different locations in memory. Without a way to uniquely refer
-                    to a location in memory, there's no way to read or write from that memory location. This is why
-                    the number of values that you can store in a RAM array is directly related to the number of address
-                    inputs.
+                    Now it's time to make the decoder. Here's a 2X4 decoder:
+                </p>
+                <img src="../../images/posts/256bytes-ram-in-minecraft/2X4 Decoder.png" class="img-fluid pb-4"
+                    loading="lazy">
+                <p>
+                    Here it is in Minecraft:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/2X4 Decoder.gif" class="img-fluid" loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    Download the schematic <a
+                        href="https://drive.google.com/file/d/1z4xvuriY5D0O77xEk6V80F_HcOIjdAyu/view?usp=sharing">here</a>.
+                    As its name suggests, it has two inputs and four outputs. At any time, all outputs will be 0 except
+                    one. Any combination of the first input and the second input will always have a single unique
+                    output. I
+                    will demonstrate:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/2X4 Decoder Demonstration.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-4">
+                    Here is a 4X16 decoder:
+                </p>
+                <img src="../../images/posts/256bytes-ram-in-minecraft/4X16 Decoder.png" class="img-fluid"
+                    loading="lazy">
+                <p class="text-center text-muted pt-4">Source: <a
+                        href="https://electronics.stackexchange.com/questions/50191/how-to-build-a-4-to-16-decoder-using-only-two-2-to-4-decoders">here</a>.
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-4">
+                    Here it is in Minecraft:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/4X16 Decoder.gif" class="img-fluid" loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-3">
+                    Download the schematic <a
+                        href="https://drive.google.com/file/d/1qiwjeQSUDhJbNnopTJwKpOneMm_574vn/view?usp=sharing">here</a>.
+                    I will now use two of these decoders and a single register to create the following circuit:
+                </p>
+                <img src="../../images/posts/256bytes-ram-in-minecraft/256 Byte RAM Circuit.png" class="img-fluid pt-4"
+                    loading="lazy">
+                <p class="pt-4 pb-4">
+                    <img src="../../images/posts/256bytes-ram-in-minecraft/256 Byte RAM Array.png"
+                        class="img-fluid pt-5" loading="lazy">
+                <p class="pt-3 pb-2">
+                    The register on the top left is specially named Memory Address Register or MAR. It's called MAR,
+                    because it will be
+                    used to select a register in the RAM array by its memory address.
+
+                    The MAR has an "sa" input which stands for "set address". To specify a memory address on the MAR,
+                    you must first set the "sa" bit to 1. Once the "sa" bit is 1 and you have keyed in the memory
+                    address, you may set the "sa" bit to 0, at which point the keyed in memory address will be stored in
+                    the MAR.
+                </p>
+                <p>
+
+                    The first four outputs of the MAR
+                    are inputs to the 4X16 decoder on the top, and the last four outputs are inputs
+                    to the 4X16 decoder on the left.
+                    The output of each decoder is a redstone wire that goes in a straight line. The sixteen output wires
+                    from the decoder on the left intersect with the sixteen output wires from the decoder on the top,
+                    for a total of 256 intersections, which all represent a different location in memory. Here I
+                    will connect a binary counter to the eight "a" inputs of the MAR. This will count from 0000
+                    0000 through 1111 1111 (0 through 255 in decimal). Notice how at each increment of the counter,
+                    there is always only a single
+                    point at which the two wires intersect.
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/256 Byte RAM Array Test.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-4">
+                    At each intersection is a circuit like this:
+                </p>
+                <img src="../../images/posts/256bytes-ram-in-minecraft/RAM Array AND Gate Circuit.png" class="img-fluid"
+                    loading="lazy">
+                <p class="pt-5 pb-4">
+                    The vertical wire and the horizontal wire are inputs to an AND gate:
+                </p>
+                <img src="../../images/posts/256bytes-ram-in-minecraft/RAM Array AND Gate.png" class="img-fluid"
+                    loading="lazy">
+                <p class="pt-5 pb-4">
+                    When both of the wires at an intersection are 1, it sets the output of the AND gate to 1, like this:
+                </p>
+                <img src="../../images/posts/256bytes-ram-in-minecraft/RAM Array AND Gates Activated.png"
+                    class="img-fluid" loading="lazy">
+                <p class="pt-5 pb-4">
+                    Under each register in the RAM array, there are two AND gates, with one of their inputs connected
+                    together with a wire. Upon entering that register's memory address into the MAR, it activates that
+                    wire, like
+                    this:
+                </p>
+                <img src="../../images/posts/256bytes-ram-in-minecraft/AND Gates Under Register.png" class="img-fluid"
+                    loading="lazy">
+                <p class="pt-5">
+                    These two AND gates under each register represent the "set" and "enable" bit of each register. To
+                    set the "set" and
+                    "enable" bit of any of the registers, you must first select that register by
+                    its memory address. This will satisfy one input to each of the AND gates. The
+                    "set" and "enable" bit of each register in the RAM array are all connected to each other, however
+                    the register must be selected by its address in memory in order for it to be effected. Here I will
+                    demonstrate. First I will set the input of the MAR to 1010 0011:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/A3.gif" class="img-fluid" loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    The binary number 1010 0011 is A3
+                    in hexadecimal, so we can say
+                    that the memory address of this register is A3. Inputting this value into the MAR selects the
+                    register at memory address A3.
+                </p>
+                <p>
+                    Now I will set the "set" bit on the RAM array to 1. This will reach every register in the entire RAM
+                    array.
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/Set Bit on RAM Array.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    Although this reaches every register in the entire array, there is only a single register that is
+                    selected by its memory address. This means that setting the "set" bit to 1 will effect only the
+                    selected register. The same is true for the "enable" bit. I'll now store the binary number 1100 1100
+                    in the register at memory address A3. With the "set" bit set to 1, I enter the value 1100 1100 onto
+                    the bus:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/Byte on RAM Array Bus.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5">
+                    This bus reaches the inputs of every single register in the entire RAM array. However, since only
+                    one of the registers is selected by its memory address, the value on the bus will effect only that
+                    register. Now I will set the "set" bit to 0, which stores the byte in register A3. Also, I'll set
+                    all
+                    eight of the bus inputs to 0:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/Turn Off Set and Bus.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-4">
+                    At this point I would like to make a control panel for this RAM array:
+                </p>
+                <img src="../../images/posts/256bytes-ram-in-minecraft/Control Panel.png" class="img-fluid"
+                    loading="lazy">
+                <p class="pt-5 pb-4">
+                    The top left row of eight levers is connected to the eight "a" inputs of the MAR.
+
+                    On the bottom left there are three levers. From left to right, these are the set address, set, and
+                    enable bits.
+
+                    The eight levers on the bottom right are the eight inputs
+                    to the bus. The eight lamps on the top right are the outputs of the bus.
+                </p>
+                <p>
+                    Here I will enter the memory
+                    address A3 (1010 0011 in binary) into the MAR. I will also set the enable bit to 1 so that I can see
+                    what is stored at that location in memory:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/Check A3.gif" class="img-fluid" loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-3">
+                    You'll recall that we stored the value 1100 1100 at memory address A3 earlier. As you can see, this
+                    value is displayed by the lamps. Now I will replace the value stored at this memory location with
+                    the value 0011 0011:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row mt-4">
+            <img src="../../images/posts/256bytes-ram-in-minecraft/Replace A3.gif" class="img-fluid" loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-3">
+                    First, I set the enable bit to 0. Then I set the input of the bus to 0011 0011. Then I briefly
+                    cycle the set bit, storing the new value in the register. I clear all eight input values on the bus
+                    and finally I set the enable bit to 1. The value stored inside the register is displayed on the
+                    lamps.
                 </p>
             </div>
             <div class="col"></div>
