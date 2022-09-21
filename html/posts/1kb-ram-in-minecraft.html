@@ -38,7 +38,9 @@
                 <h1 class="mt-4">1KB of RAM in Minecraft</h1>
                 <p class="text-muted">2022-09-18</p>
                 <p>
-                    In this post, I will describe how to create 1KB of RAM in Minecraft. For each component, I will
+                    In this post, I will describe how to create 1KB of RAM in Minecraft. I will be combining what I've
+                    learned from the two books "Code: The Hidden Language of Computer Hardware and Software" by Charles
+                    Petzold and "But How Do It Know?" by J. Clark Scott. For each component, I will
                     provide an explanation of what it does, along with a schematic which you can
                     download and import into your own Minecraft world.
                 </p>
@@ -160,7 +162,7 @@
                     class="img-fluid"></object>
                 <p class="pt-5">
                     This is one half of the register. The other half of the register consists of eight AND gates stacked
-                    on top of each other, with one of their inputs connected together, like this:
+                    on top of each other, with one of their inputs connected together like this:
                 </p>
             </div>
             <div class="col"></div>
@@ -206,10 +208,11 @@
             <div class="col"></div>
             <div class="col-10">
                 <p>
-                    I want to store the byte 0101 0101 in this register. First I set every other data input to 1. Then I
+                    I want to store the byte 0101 0101 in this register. First, I enter this value into the register.
+                    Then I
                     cycle the Set bit. Cycling the Set bit stores the value of each Data input into the register. Notice
                     how the output of the register is still 0, even though I just stored the value. This is where the
-                    Enable bit comes in:
+                    Enable bit comes in.
                 </p>
             </div>
             <div class="col"></div>
@@ -317,7 +320,7 @@
                     </tbody>
                 </table>
                 <p class="pt-5">
-                    The important thing to note about this is that no matter what the input is, there will always be a
+                    The important thing to note is no matter what the input is, there will always be a
                     unique output. This is very important because the number of bytes that a RAM array can store is
                     directly related to the number of unique locations in memory that it can address. With no way to
                     address a location in memory, there is no way to read and write to and from that location.
@@ -405,9 +408,17 @@
                 </p>
                 <object data="../../images/posts/1kb-ram-in-minecraft/Matrix Decoder Intersection.svg"
                     type="image/svg+xml" class="img-fluid"></object>
-                <p class="pt-5 pb-5">
-                    I encourage you to import the full schematic (see bottom of page) into your own Minecraft world and
-                    check it out if you're curious. Here I will give a demonstration of how to use this 1KB RAM. First,
+                <p class="pt-5">
+                    The vertical and horizontal wire at each intersection corresponds to the two inputs of an AND gate.
+                    This AND gate is connected to one of
+                    the inputs of a pair of AND gates. This pair of AND gates represents the Set and Enable bit of each
+                    register at that intersection. The other inputs of this pair of AND gates are all connected to each
+                    other. The input and output of each register is connected to a bus.
+
+                </p>
+                <p class="pb-5">
+                    I encourage you to import the full schematic (see bottom of page) into your own Minecraft. Here I
+                    will give a demonstration of how to use this 1KB RAM. First,
                     I will specify the memory location in the MAR:
                 </p>
             </div>
@@ -423,9 +434,10 @@
             <div class="col"></div>
             <div class="col-10">
                 <p class="pt-5 pb-4">
-                    In binary, this is 0101 0101. In hexadecimal this is 55, so I have entered the memory address 55
-                    into the MAR. Now I will fly over to the bus, and enter the value 1100 1100 onto the bus. I will
-                    also briefly cycle the Set bit.
+                    I enter the value 0101 0101 into the MAR. In hexadecimal this is 55, so I have entered the memory
+                    address 55
+                    into the MAR. Now I will fly over to the bus, and enter the value 1100 1100 onto the bus. Finally, I
+                    briefly cycle the Set bit.
                 </p>
             </div>
             <div class="col"></div>
