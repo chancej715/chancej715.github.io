@@ -246,7 +246,7 @@
             <div class="col-10">
                 <p class="pb-4">
                     Download the schematic <a
-                        href="https://drive.google.com/file/d/1z4xvuriY5D0O77xEk6V80F_HcOIjdAyu/view?usp=sharing">here</a>.
+                        href="https://drive.google.com/file/d/1GKPh0Fer_jk7Lssb9Ku7TjtvYAv2NVrs/view?usp=sharing">here</a>.
                     Here is my circuit diagram for this 2X4 decoder:
                 </p>
                 <object data="../../images/posts/1kb-ram-in-minecraft/2X4 Decoder.svg" type="image/svg+xml"
@@ -317,10 +317,148 @@
                     </tbody>
                 </table>
                 <p class="pt-5">
-                    I need to be able to select between
-                    thirty-two different outputs, which requires 5 inputs. Therefore, I need a 5X32 decoder. A 5X32
-                    decoder can be constructed from two 2X4 decoders and three 3X8 decoders with an Enable bit. Here is
-                    the circuit diagram I have created for a 3X8 decoder with an Enable bit:
+                    The important thing to note about this is that no matter what the input is, there will always be a
+                    unique output. This is very important because the number of bytes that a RAM array can store is
+                    directly related to the number of unique locations in memory that it can address. With no way to
+                    address a location in memory, there is no way to read and write to and from that location.
+                </p>
+                <p class="pb-5">
+                    I need to be able to select between thirty-two different outputs. To select between thirty two
+                    outputs, I need five inputs. Therefore, I need a 5X32 decoder. A 5X32 decoder can be constructed
+                    from a single 2X4 decoder and four 3X8 decoders with an Enable bit. Here is the circuit diagram I
+                    have created for a 3X8 decoder with an Enable bit:
+                </p>
+                <object data="../../images/posts/1kb-ram-in-minecraft/3X8 Decoder With Enable.svg" type="image/svg+xml"
+                    class="img-fluid"></object>
+                <p class="pt-5 pb-4">
+                    Here it is in Minecraft:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row">
+            <img src="../../images/posts/1kb-ram-in-minecraft/3X8 Decoder With Enable.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-4">
+                    Download the schematic <a
+                        href="https://drive.google.com/file/d/1NU7UJfxa_UB3XcJPkmuyFqUWuQ5--R_N/view?usp=sharing">here</a>.
+                    I'll now use four of these 3X8 decoders along with a single 2X4 decoder to create a 5X32 decoder.
+                    Here is the circuit diagram:
+                </p>
+                <object data="../../images/posts/1kb-ram-in-minecraft/5X32 Decoder.svg" type="image/svg+xml"
+                    class="img-fluid"></object>
+                <p class="pt-5 pb-3">
+                    Here's a screenshot of it in Minecraft:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row">
+            <img src="../../images/posts/1kb-ram-in-minecraft/5X32 Decoder.png" class="img-fluid" loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-4">
+                    Download the schematic <a
+                        href="https://drive.google.com/file/d/1AetLwBu9fJxi2bvIOyW8nsyNDP9AYOxi/view?usp=sharing">here</a>.
+                    For this next part I need a 10-bit register because I need to be able to refer to hexadecimal
+                    memory addresses ranging from 0000 through 03FF (0 through 1,023 in decimal). Here is the 10-bit
+                    register in Minecraft:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row">
+            <img src="../../images/posts/1kb-ram-in-minecraft/10-bit Register.gif" class="img-fluid" loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-5">
+                    Download the schematic <a
+                        href="https://drive.google.com/file/d/1Be_R-_5s9roWxNXfAQhoXdhGrQdi3l8H/view?usp=sharing">here</a>.
+                    This particular register is specially named the "Memory Address Register" or MAR for short. This
+                    register deserves a special name, because it will be used to specify which location in memory we
+                    want to access. Now I will take two of these 5X32 decoders and a 10-bit register to create the
+                    following circuit:
+                </p>
+                <object data="../../images/posts/1kb-ram-in-minecraft/Matrix Decoder.svg" type="image/svg+xml"
+                    class="img-fluid"></object>
+                <p class="pt-5 pb-4">
+                    Here it is in Minecraft:
+                </p>
+                <img src="../../images/posts/1kb-ram-in-minecraft/Matrix Decoder.png" class="img-fluid" loading="lazy">
+                <p class="pt-5 pb-5">
+                    There are a total of 1,024 intersections in this decoder. At each intersection is the following
+                    circuit:
+                </p>
+                <object data="../../images/posts/1kb-ram-in-minecraft/Matrix Decoder Intersection.svg"
+                    type="image/svg+xml" class="img-fluid"></object>
+                <p class="pt-5 pb-5">
+                    I encourage you to import the full schematic (see bottom of page) into your own Minecraft world and
+                    check it out if you're curious. Here I will give a demonstration of how to use this 1KB RAM. First,
+                    I will specify the memory location in the MAR:
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row">
+            <img src="../../images/posts/1kb-ram-in-minecraft/1KB RAM Demonstration Part 1.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-4">
+                    In binary, this is 0101 0101. In hexadecimal this is 55, so I have entered the memory address 55
+                    into the MAR. Now I will fly over to the bus, and enter the value 1100 1100 onto the bus. I will
+                    also briefly cycle the Set bit.
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row">
+            <img src="../../images/posts/1kb-ram-in-minecraft/1KB RAM Demonstration Part 2.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-4">
+                    Now the byte 1100 1100 is stored at memory address 55. I will now take that value off the bus, and
+                    turn on the Enable bit. Then I will fly over to the other end of the bus.
+                </p>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row">
+            <img src="../../images/posts/1kb-ram-in-minecraft/1KB RAM Demonstration Part 3.gif" class="img-fluid"
+                loading="lazy">
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-10">
+                <p class="pt-5 pb-5">
+                    As you can see, the value 1100 1100 is on the bus, which indicates that it's currently being stored
+                    at memory address 55. The full schematic can be found <a
+                        href="https://drive.google.com/file/d/1w4bNV81V4bDkwTBapBXmNhIah0AKRAsR/view?usp=sharing">here</a>.
                 </p>
             </div>
             <div class="col"></div>
