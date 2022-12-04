@@ -48,8 +48,8 @@
                     number should not be longer than sixteen digits. The data type unsigned long has a storage size of
                     8 bytes, so a credit card number of 16 digits will fit within this range.
                 </p>
-                <div class="bg-light p-4 pt-1 pb-0">
-                    <pre><code>
+                <div class="bg-light">
+                    <pre><code class="language-c">
 #include &ltstdio.h>
 
 int main(void)
@@ -76,8 +76,8 @@ int main(void)
                     defining a simple function that calculates the number of digits in a given number. I will use this
                     function to determine what size array is needed to store the entire credit card number.
                 </p>
-                <div class="bg-light p-4 pt-1 pb-0">
-                    <pre><code>
+                <div class="bg-light">
+                    <pre><code class="language-c">
 unsigned long calculateNumberOfDigits(unsigned long number)
 {
     int numberOfDigits = 0;
@@ -97,8 +97,8 @@ unsigned long calculateNumberOfDigits(unsigned long number)
                     given number reaches 0. This is a simple trick for calculating the number of digits in a
                     number. Now I will make a function to store a given number in its own array.
                 </p>
-                <div class="bg-light p-4 pt-1 pb-0">
-                    <pre><code>
+                <div class="bg-light">
+                    <pre><code class="language-c">
 void numberToArray(unsigned long number, int array[])
 {
     int lastDigit;
@@ -123,8 +123,8 @@ void numberToArray(unsigned long number, int array[])
                 <p>
                     I will also add the following three lines to the main function, just under the while loop.
                 </p>
-                <div class="bg-light p-4 pt-1 pb-0">
-                    <pre><code>
+                <div class="bg-light">
+                    <pre><code class="language-c">
 int cardNumberLength = calculateNumberOfDigits(cardNumber);
 int cardNumberArray[cardNumberLength];
 
@@ -134,8 +134,8 @@ numberToArray(cardNumber, cardNumberArray);
                 <p class="pt-4 pb-2">
                     Now my whole program looks like this:
                 </p>
-                <div class="bg-light p-4 pt-1 pb-0">
-                    <pre><code>
+                <div class="bg-light">
+                    <pre><code class="language-c">
 #include &ltstdio.h>
 
 void numberToArray(unsigned long number, int array[]);
@@ -202,8 +202,8 @@ unsigned long calculateNumberOfDigits(unsigned long number)
                     by two, and adds the digits of the sum to a running total. This repeats until it reaches the end of
                     the array.
                 </p>
-                <div class="bg-light p-4 pt-1 pb-0">
-                    <pre><code>
+                <div class="bg-light">
+                    <pre><code class="language-c">
 int everyOtherTimesTwoTotal = 0;
 
 for (int i = 1; i < cardNumberLength; i += 2)
@@ -231,8 +231,8 @@ for (int i = 1; i < cardNumberLength; i += 2)
                     Now it's time to take each digit in the credit card number that was not multiplied by two, and add
                     those digits to the sum calculated in the previous step.
                 </p>
-                <div class="bg-light p-4 pt-1 pb-0">
-                    <pre><code>
+                <div class="bg-light">
+                    <pre><code class="language-c">
 for (int i = 0; i < cardNumberLength; i++)
     everyOtherTimesTwoTotal += cardNumberArray[i];
                     </code></pre>
@@ -243,8 +243,8 @@ for (int i = 0; i < cardNumberLength; i++)
                     not, then the credit card number is invalid according to the Luhn algorithm. If it is, then there
                     are a few more steps I took to determine the card issuer.
                 </p>
-                <div class="bg-light p-4 pt-1 pb-0">
-                    <pre><code>
+                <div class="bg-light">
+                    <pre><code class="language-c">
 if (everyOtherTimesTwoTotal % 10 == 0)
 {
     numberToArray(cardNumber, cardNumberArray);
@@ -285,6 +285,11 @@ else
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+        <!-- Syntax highlighting -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
 </body>
 
 </html>
