@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+
+<div w3-include-html="../../head.html"></div>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <!-- Socials -->
+                <div w3-include-html="../../me.html"></div>
+            </div>
+
+            <div class="col-md-8 mt-5">
+                <h1 class="mt-4">Credit Card Number Validator</h1>
+                <p class="text-muted">2022-10-11</p>
+                <p>
+                    In this post, I will describe how I created a program in C to check the syntactical validity of a
+                    given credit card number. I originally wrote this program for problem set 1 of the HarvardX CS50x
+                    course. You can find the full program <a
+                        href="https://raw.githubusercontent.com/chancej715/credit/main/credit.c">here</a>. This program
+                    is designed to work with American Express, Visa, and some MasterCard numbers. You can find a list of
+                    card numbers to test this program with <a
+                        href="https://developer.paypal.com/api/nvp-soap/payflow/integration-guide/test-transactions/#standard-test-cards">here</a>.
+                </p>
+                <h4 class="mt-5">Luhn Algorithm</h4>
+                <p>
+                    At the heart of this program is the Luhn algorithm. This algorithm was created by IBM scientist Hans
+                    Peter Luhn and is in wide use today. It is not meant to protect against malicious attacks, but
+                    instead serves as a quick way to detect typos or otherwise fradulent credit card numbers. It is a
+                    quick, yet effective, check that doesn't require the overhead of querying a database.
+                </p>
+                <p>
+                    The Luhn algorithm is comprised of the following steps:
+                </p>
+                <ol class="list-group list-group-numbered">
+                    <li class="list-group-item">Multiply every other digit by 2, starting with the second-to-last digit.
+                        Add those products' digits together.</li>
+                    <li class="list-group-item">Add the previous sum to the sum of the digits that weren't multiplied by
+                        2.</li>
+                    <li class="list-group-item">If the total modulo 10 is congruent with 0, the number is valid.</li>
+                </ol>
+
+                <h4 class="mt-5">Storing the Card Number</h4>
+                <p class="pb-2">
+                    To start off, I wrote a function that takes user input from stdin and stores it in a variable. I
+                    declared the variable with the unsigned long data type, because a valid credit card
+                    number should not be longer than sixteen digits. The data type unsigned long has a storage size of
+                    8 bytes, so a credit card number of 16 digits will fit within this range.
+                </p>
+                <div class="bg-light p-4 pt-1 pb-0">
+                    <pre><code>
+#include &ltstdio.h>
+
+int main(void)
+{
+    unsigned long cardNumber = 0;
+    
+    while (cardNumber < 1 || cardNumber > 9999999999999999)
+    {
+        printf("Number: ");
+        scanf("%lu", &cardNumber);
+        
+        while ((getchar()) != '\n');
+    }
+    
+    return 0;
+}
+                    </code></pre>
+                </div>
+                <p class="pt-4 pb-2">
+                    I added the <kbd>while ((getchar()) != '\n');</kbd> line to clear the scanf buffer on each loop
+                    iteration. This
+                    prevents endless loops upon undesirable input, like letters. Now it's time to calculate the number
+                    of digits in the given credit card number, and store this number to an array. I will start by
+                    defining a simple function that calculates the number of digits in a given number. I will use this
+                    function to determine what size array is needed to store the entire credit card number.
+                </p>
+                <div class="bg-light p-4 pt-1 pb-0">
+                    <pre><code>
+unsigned long calculateNumberOfDigits(unsigned long number)
+{
+    int numberOfDigits = 0;
+
+    while (number > 0)
+    {
+        numberOfDigits++;
+        number /= 10;
+    }
+
+    return numberOfDigits;
+}
+                    </code></pre>
+                </div>
+                <p class="pt-4 pb-2">
+                    All this function does is divide a given number by 10, and increment a counter each time until the
+                    given number reaches 0. This is a simple trick for calculating the number of digits in a
+                    number. Now I will make a function to store a given number in its own array.
+                </p>
+                <div class="bg-light p-4 pt-1 pb-0">
+                    <pre><code>
+void numberToArray(unsigned long number, int array[])
+{
+    int lastDigit;
+    int counter = 0;
+
+    do
+    {
+        lastDigit = number % 10;
+        array[counter] = lastDigit;
+        number /= 10;
+        counter++;
+    } while (number > 0);
+}
+                    </code></pre>
+                </div>
+                <p class="pt-4">
+                    Any number modulo ten gives you the last digit of that number. After the last digit of the credit
+                    card number is obtained, it is stored in an array. Then the credit card number is divided by 10,
+                    dismissing the last digit. Finally, the counter is increased by 1, and the loop checks if the
+                    credit card number has reached 0 yet, before starting another loop.
+                </p class="pb-2">
+                <p>
+                    I will also add the following three lines to the main function, just under the while loop.
+                </p>
+                <div class="bg-light p-4 pt-1 pb-0">
+                    <pre><code>
+int cardNumberLength = calculateNumberOfDigits(cardNumber);
+int cardNumberArray[cardNumberLength];
+
+numberToArray(cardNumber, cardNumberArray);
+                    </code></pre>
+                </div>
+                <p class="pt-4 pb-2">
+                    Now my whole program looks like this:
+                </p>
+                <div class="bg-light p-4 pt-1 pb-0">
+                    <pre><code>
+#include &ltstdio.h>
+
+void numberToArray(unsigned long number, int array[]);
+unsigned long calculateNumberOfDigits(unsigned long number);
+
+int main(void)
+{
+    unsigned long cardNumber = 0;
+
+    while (cardNumber < 1 || cardNumber > 9999999999999999)
+    {
+        printf("Number: ");
+        scanf("%lu", &cardNumber);
+
+        while ((getchar()) != '\n');
+    }
+
+    int cardNumberLength = calculateNumberOfDigits(cardNumber);
+    int cardNumberArray[cardNumberLength];
+
+    numberToArray(cardNumber, cardNumberArray);
+
+    return 0;
+}
+
+void numberToArray(unsigned long number, int array[])
+{
+    int lastDigit;
+    int counter = 0;
+
+    do
+    {
+        lastDigit = number % 10;
+        array[counter] = lastDigit;
+        number /= 10;
+        counter++;
+    } while (number > 0);
+}
+
+unsigned long calculateNumberOfDigits(unsigned long number)
+{
+    int numberOfDigits = 0;
+
+    while (number > 0)
+    {
+        numberOfDigits++;
+        number /= 10;
+    }
+
+    return numberOfDigits;
+}
+                    </code></pre>
+                </div>
+                <h4 class="mt-5">Implementing the Luhn Algorithm</h4>
+                <p>
+                    At this point, the program takes a card number, determines how many digits are in that number, and
+                    stores each digit to an array. Now it's time to start implementing the Luhn algorithm.
+                </p>
+                <h5 class="mt-4">Step 1</h5>
+                <p class="pb-4">
+                    Recall that the first step of the Luhn algorithm is to multiply every other digit by 2, starting
+                    with the second-to-last digit. Then add those products' digits together. The following for loop
+                    starts with the second-to-last digit in the credit card number array. Then it multiplies that number
+                    by two, and adds the digits of the sum to a running total. This repeats until it reaches the end of
+                    the array.
+                </p>
+                <div class="bg-light p-4 pt-1 pb-0">
+                    <pre><code>
+int everyOtherTimesTwoTotal = 0;
+
+for (int i = 1; i < cardNumberLength; i += 2)
+{
+    if (cardNumberArray[i])
+    {
+        if (cardNumberArray[i] * 2 < 10)
+            everyOtherTimesTwoTotal += cardNumberArray[i] * 2;
+        else
+        {
+            int tempArray[2];
+            numberToArray(cardNumberArray[i] * 2, tempArray);
+
+            for (int j = 0; j < 2; j++)
+                everyOtherTimesTwoTotal += tempArray[j];
+        }
+
+        cardNumberArray[i] = 0;
+    }
+}
+                    </code></pre>
+                </div>
+                <h5 class="mt-5">Step 2</h5>
+                <p class="pb-3">
+                    Now it's time to take each digit in the credit card number that was not multiplied by two, and add
+                    those digits to the sum calculated in the previous step.
+                </p>
+                <div class="bg-light p-4 pt-1 pb-0">
+                    <pre><code>
+for (int i = 0; i < cardNumberLength; i++)
+    everyOtherTimesTwoTotal += cardNumberArray[i];
+                    </code></pre>
+                </div>
+                <h5 class="mt-5">Step 3</h5>
+                <p class="pb-3">
+                    For the final step, I check if the sum from the previous step modulo 10 is congruent with 0. If it's
+                    not, then the credit card number is invalid according to the Luhn algorithm. If it is, then there
+                    are a few more steps I took to determine the card issuer.
+                </p>
+                <div class="bg-light p-4 pt-1 pb-0">
+                    <pre><code>
+if (everyOtherTimesTwoTotal % 10 == 0)
+{
+    numberToArray(cardNumber, cardNumberArray);
+
+    if (cardNumberArray[cardNumberLength - 1] == 4)
+        printf("VISA\n");
+    else if (cardNumberArray[cardNumberLength - 1] == 3)
+        if (cardNumberArray[cardNumberLength - 2] == 4 || cardNumberArray[cardNumberLength - 2] == 7)
+            printf("AMEX\n");
+        else
+            printf("INVALID\n");
+    else if (cardNumberArray[cardNumberLength - 1] == 5)
+        if (cardNumberArray[cardNumberLength - 2] + 5 < 11)
+            printf("MASTERCARD\n");
+        else
+            printf("INVALID\n");
+}
+else
+    printf("INVALID\n");
+                    </code></pre>
+                </div>
+                <p class="pt-3">
+                    After confirming that the credit card number modulo 10 is congruent with 0, I then go on to check
+                    the first couple digits of the credit card number. All Visa credit card numbers start with 4, so if
+                    the number is valid up to this point, and it starts with a 4, then it is a Visa credit card number.
+                    All American Express numbers start with 34 or 37, so I use the same process to determine if the card
+                    issuer is American Express. Finally, most Mastercard numbers start with 51, 52, 53, 54, or 55. There
+                    are also some other potential starting numbers, but I did not include them for simplicity sake.
+                </p>
+                <p class="pb-5 mb-5">
+                    The full program can be found <a
+                        href="https://raw.githubusercontent.com/chancej715/credit/main/credit.c">here</a>.
+                </p>
+            </div>
+        </div>
+
+        <script src="../../scripts/js.js"></script>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</body>
+
+</html>
