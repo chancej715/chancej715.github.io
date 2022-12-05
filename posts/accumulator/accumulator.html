@@ -1,7 +1,10 @@
 <!doctype html>
 <html lang="en">
 
-<div w3-include-html="../../head.html"></div>
+<head>
+    <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
+    <div w3-include-html="../../head.html"></div>
+</head>
 
 <body>
     <div class="container">
@@ -65,15 +68,15 @@
                         href="https://drive.google.com/file/d/1ZCfQH8CPyiMzrfK3LucIkN8-9nXf0q9u/view?usp=sharing">here</a>.
                     Here it is in Minecraft:
                 </p>
-                <img src="../../posts/accumulator/Edge-Triggered D-type Latch.gif"
-                class="img-fluid w-100" loading="lazy">
+                <img src="../../posts/accumulator/Edge-Triggered D-type Latch.gif" class="img-fluid w-100"
+                    loading="lazy">
                 <p class="pb-3 pt-3">
                     The reason it's called "edge-triggered" is because the value of the Data input is stored at the
                     precise moment that the Clock input's value goes from 0 to 1.
                     Here I will demonstrate:
                 </p>
-                <img src="../../posts/accumulator/Edge-Triggered D-type Latch Demonstration.gif"
-                class="img-fluid w-100" loading="lazy">
+                <img src="../../posts/accumulator/Edge-Triggered D-type Latch Demonstration.gif" class="img-fluid w-100"
+                    loading="lazy">
                 <p class="pb-3 pt-4">
                     First I set the value of the Data input to 1. Then I set the Clock input to 1. At this moment, the
                     value of the Data input is reflected in the Q output (the lamp on the left). And next is the
@@ -96,13 +99,11 @@
                     the 8-bit Latch, simply line up eight of the edge-triggered D-type latches, and connect their Clock
                     inputs, like this:
                 </p>
-                <img src="../../posts/accumulator/8-bit Latch.gif" class="img-fluid w-100 pb-4"
-                loading="lazy">
+                <img src="../../posts/accumulator/8-bit Latch.gif" class="img-fluid w-100 pb-4" loading="lazy">
                 <p class="pb-4">
                     Here is the control panel I made:
                 </p>
-                <img src="../../posts/accumulator/8-bit Accumulator Control Panel.png"
-                    class="img-fluid" loading="lazy">
+                <img src="../../posts/accumulator/8-bit Accumulator Control Panel.png" class="img-fluid" loading="lazy">
                 <p class="pt-5">
                     The buttons on the top left are the Add and Clear switches. The Add switch is simply the Clock input
                     to each of the 8-bit latches (which are now all connected). The Clear switch sets the Data inputs of
@@ -160,8 +161,8 @@
                 <p>
                     Here I will demonstrate:
                 </p>
-                <img src="../../posts/accumulator/8-bit Accumulator Demonstration.gif"
-                class="img-fluid w-100" loading="lazy">
+                <img src="../../posts/accumulator/8-bit Accumulator Demonstration.gif" class="img-fluid w-100"
+                    loading="lazy">
                 <p class="pb-3 pt-3">
                     First I set all the inputs to 0 and then I press the "Clear" button. Then I enter the first number
                     "0000 1010", and press Add. Because we've only entered one number so far, it's effectively added
@@ -175,8 +176,8 @@
                     seconds. The switch on the far right is not activated because I didn't hook up the levers to the
                     inputs of the Adder yet, so don't worry about that.
                 </p>
-                <img src="../../posts/accumulator/8-bit Binary Latch Counter.gif"
-                class="img-fluid w-100 mb-5" loading="lazy">
+                <img src="../../posts/accumulator/8-bit Binary Latch Counter.gif" class="img-fluid w-100 mb-5"
+                    loading="lazy">
             </div>
         </div>
 
