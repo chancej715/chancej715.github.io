@@ -1,6 +1,7 @@
 title: My blog.
 logo: /assets/img/logo.png
+link: https://chancej715.github.io
 handle: chancej715
-description: Penetration Tester
+role: Penetration Tester
 google_analytics:
 theme: jekyll-theme-minimal
