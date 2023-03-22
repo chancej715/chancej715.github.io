@@ -3,8 +3,23 @@ layout: page
 ---
 <p class="lead text-muted mb-2 mt-5">Posts</p>
 <hr class="text-muted m-0 mb-4">
+
+<!-- List posts -->
 {% for post in site.posts %}
 
-  <a href="{{ post.url }}">{{ post.title }}</a>
+<div class="row mb-5">
+  <div class="col-lg-4">
+    <a href="{{ post.url }}" style="color: black; text-decoration: none">
+      <img src="posts/credit/credit.png" class="img-fluid mb-4">
+    </a>
+  </div>
+  <div class="col-lg-8">
+    <a href="{{ post.url }}" style="color: black; text-decoration: none">
+      <p class="fs-5 mb-1">{{ post.title }}</p>
+      <p class="mb-1">{{ post.description }}</p>
+      <p class="text-muted">2022-10-11</p>
+    </a>
+  </div>
+</div>
 
 {% endfor %}

@@ -1,5 +1,6 @@
 ---
 author: Chance Johnson
+description: Learn how to interpret bytes of captured network packets.
 layout: post
 ---
 # Introduction
