@@ -1,19 +1,14 @@
 ---
 layout: page
 ---
-<p class="lead text-muted mb-2 mt-5">Posts</p>
+<p class="lead text-muted mb-2 mt-5">Writeups</p>
 <hr class="text-muted m-0 mb-4">
 
 <!-- List posts -->
 {% for writeup in site.writeups %}
 
 <div class="row mb-5">
-  <div class="col-lg-5 mb-3">
-    <a href="{{ writeup.url }}" style="color: black; text-decoration: none">
-      <img src="{{ writeup.thumbnail }}">
-    </a>
-  </div>
-  <div class="col-lg-7">
+  <div class="col">
     <a href="{{ writeup.url }}" style="color: black; text-decoration: none">
       <p class="fs-5 mb-1">{{ writeup.title }}</p>
       <p class="mb-1">{{ writeup.description }}</p>
