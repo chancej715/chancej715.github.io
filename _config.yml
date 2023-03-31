@@ -5,3 +5,6 @@ handle: chancej715
 role: Penetration Tester
 google_analytics:
 theme: jekyll-theme-minimal
+collections:
+  writeups:
+    output: true
