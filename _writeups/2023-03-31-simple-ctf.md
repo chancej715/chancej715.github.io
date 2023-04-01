@@ -21,7 +21,7 @@ This tells me the following two services are running:
 
 **Answer**: 2
 
-### 2. What is running on the higher port?
+# 2. What is running on the higher port?
 [By default, Nmap scans the top 1,000 ports](By default, Nmap scans the top 1,000 ports for each scan protocol requested.), so there's a good chance the following command will tell me which service is listening to the highest port number:
 ```
 nmap 10.10.214.207
