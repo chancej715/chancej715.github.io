@@ -6,7 +6,7 @@ title: Simple CTF
 ---
 [Simple CTF](https://tryhackme.com/room/easyctf) is a beginner friendly CTF on TryHackMe by MrSeth6797. I will be using Kali Linux.
 
-### 1. How many services are running under port 1000?
+# 1. How many services are running under port 1000?
 I executed the following Nmap command to scan for both UDP and TCP services on this port:
 ```
 sudo nmap -sS -sU -p1000 10.10.214.207
@@ -52,7 +52,7 @@ An Nmap [version detection](https://nmap.org/book/man-version-detection.html) sc
 
 **Answer**: ssh
 
-### 3. What's the CVE you're using against the application?
+# 3. What's the CVE you're using against the application?
 At first, I used the Nmap [vulners](https://raw.githubusercontent.com/vulnersCom/nmap-vulners/master/vulners.nse) script to list CVEs for the services listening on the open ports I had already discovered:
 ```
 sudo nmap -sV -sS -sU -p21,80,2222,1000 --script=vulners 10.10.214.207
@@ -92,12 +92,12 @@ A Google search for `cms made simple 2.2.8 cve` lead me to [CVE-2019-9053](https
 
 **Answer**: CVE-2019-9053
 
-### 4. To what kind of vulnerability is the application vulnerable?
+# 4. To what kind of vulnerability is the application vulnerable?
 CVE-2019-9053 is recorded as an SQL injection vulnerability.
 
 **Answer**: SQLi
 
-### 5. What's the password?
+# 5. What's the password?
 I found [this](https://github.com/e-renna/CVE-2019-9053) Python script online for exploiting the CVE. Using this script, I ran the following command:
 ```
 python3 exploit.py -u http://10.10.214.207/simple/
@@ -123,22 +123,22 @@ The output of this command indicates the password is "secret".
 **Answer**: secret
 
 
-### 6. Where can you login with the details obtained?
+# 6. Where can you login with the details obtained?
 Obviously, the SSH server.
 
 **Answer**: SSH
 
-### 7. What's the user flag?
+# 7. What's the user flag?
 I logged into the SSH server with the newly found credentials, and found a "user.txt" file. The contents of the file read "G00d j0b, keep up!".
 
 **Answer**: G00d j0b, keep up!
 
-### 8. Is there any other user in the home directory? What's its name?
+# 8. Is there any other user in the home directory? What's its name?
 There was a directory named "sunbath" in the "/home" directory.
 
 **Answer**: sunbath
 
-### 9. What can you leverage to spawn a privileged shell?
+# 9. What can you leverage to spawn a privileged shell?
 I got stuck on this for a while. There weren't any more files in the user's home directory, and I wasn't able to perform many commands as sudo. I finally remembered to list which sudo commands can be performed:
 ```
 sudo -l
@@ -154,7 +154,7 @@ It looks like I can use vim to run commands as the root user.
 
 **Answer**: vim
 
-### 10. What's the root flag?
+# 10. What's the root flag?
 I ran vim as sudo, and in vim I entered the following:
 ```
 :!ls /root
