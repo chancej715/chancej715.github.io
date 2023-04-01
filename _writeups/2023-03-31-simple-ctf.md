@@ -1,5 +1,6 @@
 ---
 author: Chance Johnson
+date: 2023-03-31
 description: A beginner friendly CTF by MrSeth6797 on TryHackMe.
 layout: post
 title: Simple CTF

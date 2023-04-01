@@ -1,5 +1,6 @@
 ---
 author: Chance Johnson
+date: 2023-04-01
 description: Beginner level web server CTF by tryhackme on TryHackMe.
 layout: post
 title: Pickle Rick
