@@ -59,7 +59,7 @@
           </svg>
         </a>
 
-        <a href="https://linkedin.com" target="_blank" style="text-decoration: none" class="social">
+        <a href="https://linkedin.com/in/chancej715" target="_blank" style="text-decoration: none" class="social">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
             <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
           </svg>
@@ -80,7 +80,7 @@
 
 <p><a href="https://tryhackme.com/room/easyctf">Simple CTF</a> is a beginner friendly CTF on TryHackMe by MrSeth6797. I will be using Kali Linux.</p>
 
-<h3 id="1-how-many-services-are-running-under-port-1000">1. How many services are running under port 1000?</h3>
+<h1 id="1-how-many-services-are-running-under-port-1000">1. How many services are running under port 1000?</h1>
 <p>I executed the following Nmap command to scan for both UDP and TCP services on this port:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo nmap -sS -sU -p1000 10.10.214.207
 </code></pre></div></div>
@@ -92,7 +92,7 @@
 
 <p><strong>Answer</strong>: 2</p>
 
-<h3 id="2-what-is-running-on-the-higher-port">2. What is running on the higher port?</h3>
+<h1 id="2-what-is-running-on-the-higher-port">2. What is running on the higher port?</h1>
 <p><a href="By default, Nmap scans the top 1,000 ports for each scan protocol requested.">By default, Nmap scans the top 1,000 ports</a>, so there’s a good chance the following command will tell me which service is listening to the highest port number:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap 10.10.214.207
 </code></pre></div></div>
@@ -120,7 +120,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 <p><strong>Answer</strong>: ssh</p>
 
-<h3 id="3-whats-thecveyoure-using-against-the-application">3. What’s the CVE you’re using against the application?</h3>
+<h1 id="3-whats-thecveyoure-using-against-the-application">3. What’s the CVE you’re using against the application?</h1>
 <p>At first, I used the Nmap <a href="https://raw.githubusercontent.com/vulnersCom/nmap-vulners/master/vulners.nse">vulners</a> script to list CVEs for the services listening on the open ports I had already discovered:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo nmap -sV -sS -sU -p21,80,2222,1000 --script=vulners 10.10.214.207
 </code></pre></div></div>
@@ -155,12 +155,12 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 <p><strong>Answer</strong>: CVE-2019-9053</p>
 
-<h3 id="4-to-what-kind-of-vulnerability-is-the-application-vulnerable">4. To what kind of vulnerability is the application vulnerable?</h3>
+<h1 id="4-to-what-kind-of-vulnerability-is-the-application-vulnerable">4. To what kind of vulnerability is the application vulnerable?</h1>
 <p>CVE-2019-9053 is recorded as an SQL injection vulnerability.</p>
 
 <p><strong>Answer</strong>: SQLi</p>
 
-<h3 id="5-whats-the-password">5. What’s the password?</h3>
+<h1 id="5-whats-the-password">5. What’s the password?</h1>
 <p>I found <a href="https://github.com/e-renna/CVE-2019-9053">this</a> Python script online for exploiting the CVE. Using this script, I ran the following command:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 exploit.py -u http://10.10.214.207/simple/
 </code></pre></div></div>
@@ -182,22 +182,22 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 <p><strong>Answer</strong>: secret</p>
 
-<h3 id="6-where-can-you-login-with-the-details-obtained">6. Where can you login with the details obtained?</h3>
+<h1 id="6-where-can-you-login-with-the-details-obtained">6. Where can you login with the details obtained?</h1>
 <p>Obviously, the SSH server.</p>
 
 <p><strong>Answer</strong>: SSH</p>
 
-<h3 id="7-whats-the-user-flag">7. What’s the user flag?</h3>
+<h1 id="7-whats-the-user-flag">7. What’s the user flag?</h1>
 <p>I logged into the SSH server with the newly found credentials, and found a “user.txt” file. The contents of the file read “G00d j0b, keep up!”.</p>
 
 <p><strong>Answer</strong>: G00d j0b, keep up!</p>
 
-<h3 id="8-is-there-any-other-user-in-the-home-directory-whats-its-name">8. Is there any other user in the home directory? What’s its name?</h3>
+<h1 id="8-is-there-any-other-user-in-the-home-directory-whats-its-name">8. Is there any other user in the home directory? What’s its name?</h1>
 <p>There was a directory named “sunbath” in the “/home” directory.</p>
 
 <p><strong>Answer</strong>: sunbath</p>
 
-<h3 id="9-what-can-you-leverage-to-spawn-a-privileged-shell">9. What can you leverage to spawn a privileged shell?</h3>
+<h1 id="9-what-can-you-leverage-to-spawn-a-privileged-shell">9. What can you leverage to spawn a privileged shell?</h1>
 <p>I got stuck on this for a while. There weren’t any more files in the user’s home directory, and I wasn’t able to perform many commands as sudo. I finally remembered to list which sudo commands can be performed:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo -l
 </code></pre></div></div>
@@ -211,7 +211,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 <p><strong>Answer</strong>: vim</p>
 
-<h3 id="10-whats-the-root-flag">10. What’s the root flag?</h3>
+<h1 id="10-whats-the-root-flag">10. What’s the root flag?</h1>
 <p>I ran vim as sudo, and in vim I entered the following:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:!ls /root
 </code></pre></div></div>
