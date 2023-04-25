@@ -17,8 +17,16 @@
                 {% for post in site.posts %}
 
                 <div class="row mb-4">
-                    <div class="col">
-                        <a href="writeups/..{{ post.url }}" style="color: black; text-decoration: none">
+                    <!-- Post image -->
+                    <div class="col-lg-5 mb-3">
+                        <a href="{{ post.url }}" style="color: black; text-decoration: none">
+                            <img src="{{ post.thumbnail }}">
+                        </a>
+                    </div>
+
+                    <!-- Post title, date and description -->
+                    <div class="col-lg-7">
+                        <a href="{{ post.url }}" style="color: black; text-decoration: none">
                             <p class="fs-5 mb-1">{{ post.title }}</p>
                             <p class="mb-1">{{ post.description }}</p>
                             <p class="text-muted">{{ post.date | date: "%Y-%m-%d" }}</p>
