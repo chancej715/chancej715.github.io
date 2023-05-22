@@ -10,7 +10,7 @@ Versions 2.x before 2.54 of the popular password manager [KeePass](https://keepa
 
 Password managers such as KeePass allow users to store all of their passwords in a single password database which is encrypted using a master password. If an attacker can obtain this master password, they can then decrypt the password database, thus gaining access to all of the passwords stored in the database.
 
-In this post, I will demonstrate how to exploit this vulnerability to obtain a victim user's KeePass password database master password from a process memory dump, and use it to recover all of the plain-text passwords from the database. The victim is a Windows 11 machine with KeePass version 2.53.1 installed. I will be using a Debian-based distribution to attack the machine.
+In this post, I will demonstrate how to exploit this vulnerability to obtain a victim user's KeePass password database master password from a process memory dump, and use it to recover all of the plain-text passwords from the database. The victim is running a Windows 11 machine with KeePass version 2.53.1 installed. I will be using a Debian-based distribution to attack the machine.
 
 ## Post Structure
 - Obtain encrypted KeePass password database and KeePass process memory dump from victim machine.
