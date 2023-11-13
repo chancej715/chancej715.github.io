@@ -95,7 +95,7 @@ This script can be summed up in the following steps:
 - Compare each directory name to the last-recorded process ID.
 - If the directory name is greater than, it's a new process.
 
-Linux assigns process IDs sequentially starting from zero, up to a maximum number specified in the file `/proc/sys/kernel/pid_max`. To record new processes, you only need to remember one process ID at any given time. The next process ID which is greater than the most recently recorded process ID is a new processes. In my experiments I have never reached this max process ID number. To keep things simple, I did not include a check feature for this number in my scripts.
+Linux assigns process IDs sequentially starting from zero, up to a maximum number specified in the file `/proc/sys/kernel/pid_max`. To record new processes, you only need to remember one process ID at any given time. The next process ID which is greater than the most recently recorded process ID is a new process. In my experiments I have never reached this max process ID number. To keep things simple, I did not include a check feature for this number in my scripts.
 
 Less talk, more do! In the following demonstration, I have created some cron jobs to execute the following command every 10 seconds:
 ```
